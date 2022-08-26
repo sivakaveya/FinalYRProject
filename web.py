@@ -983,35 +983,35 @@ def search():
         return render_template('searchPage.html',notifications=showNotifications(session['lid']),exevents=lst)
     return render_template('searchPage.html',notifications=showNotifications(session['lid']),exevents=exevents)
 
-@app.route('/modify_search',methods=['POST','GET'])
-def modify_search():
-    exevents=knowafest()
-    natVenue=""
-    if request.method=="POST":
-        domain=request.form.get('domain')
-        location=request.form.get('location')
-        date=request.form.get('date')
-        venue=request.form.getlist('venue')
-        #print(venue)
-        etype=request.form.get('type')
-        money=request.form.get('money')
-        free=request.form.get('free')
-        if free=='free':
-            money=0
-        lst=[]
-        if 'national' in venue:
-            natVenue="India"
-        elif 'international' in venue:
-            natVenue=""
-        if 'online' in venue:
-            natVenue=""
-        for events in exevents:
-            if events.detail.__contanis__(etype) and events.detail.__contains__(domain) and events.loc.__contains__(location) and events.loc.__contains__(natVenue) :
-                lst=lst+[events]
-        # for l in lst:
-        #     print(l.detail)
-        return redirect('/search')
-    return redirect('/search')
+# @app.route('/modify_search',methods=['POST','GET'])
+# def modify_search():
+#     exevents=knowafest()
+#     natVenue=""
+#     if request.method=="POST":
+#         domain=request.form.get('domain')
+#         location=request.form.get('location')
+#         date=request.form.get('date')
+#         venue=request.form.getlist('venue')
+#         #print(venue)
+#         etype=request.form.get('type')
+#         money=request.form.get('money')
+#         free=request.form.get('free')
+#         if free=='free':
+#             money=0
+#         lst=[]
+#         if 'national' in venue:
+#             natVenue="India"
+#         elif 'international' in venue:
+#             natVenue=""
+#         if 'online' in venue:
+#             natVenue=""
+#         for events in exevents:
+#             if events.detail.__contanis__(etype) and events.detail.__contains__(domain) and events.loc.__contains__(location) and events.loc.__contains__(natVenue) :
+#                 lst=lst+[events]
+#         # for l in lst:
+#         #     print(l.detail)
+#         return redirect('/search')
+#     return redirect('/search')
 
 
 
