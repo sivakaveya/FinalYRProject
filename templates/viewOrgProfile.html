@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <link rel="stylesheet" href="../static//stylesheet/commonCode.css">
+    <link rel="stylesheet" href="../static//stylesheet/profile.css">
+    <link rel="stylesheet" href="../static//stylesheet/clientDashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css" integrity="sha512-10/jx2EXwxxWqCLX/hHth/vu2KY3jCF70dCQB8TSgNjbCVAC/8vai53GfMDrO2Emgwccf2pJqxct9ehpzG+MTw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <div class="main-container-profile">
+        <div class="navbar-container">
+            <div class="nv-logo" style="display: flex; justify-content: space-between; align-items: center;">
+                <img src="../static/images/Logo.png" alt="" >
+                <!-- <div class="dashboard-text">Dashboard</div> -->
+            </div>
+            <div class="nv-links">
+                <div class="search-icon"><i class="fa-solid fa-magnifying-glass"></i></div>
+                <div class="notification-icon"><i class="fa-solid fa-bell"></i></div>
+                <div class="logout-btn"><i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</div>
+            </div>
+        </div>
+        <!-- Banner container -->
+        <label  for="profile-banner" class="profile-banner-container">
+            <div class="profile-banner-background"></div>
+            <img class="profile-banner-image"  alt="" src="../static/images/profile/{{org.cover_photo}}" style="object-fit: cover;">
+            
+        </label>
+
+
+        <!-- User info container -->
+        <div class="profile-info-container">
+            
+            <div class="profile-info-card-container">
+                
+                <div class="card-content-container">
+                    
+                <img src="./static/images/profile/{{org.profile_photo}}" alt="" style="object-fit: cover;">
+                    <label for="user-profile-photo" class="user-profile-image">
+                        
+                        
+                    </label>
+                    
+                </div>
+                <div class="user-info transition">
+                    <div class="user-card-info">
+                        <div class="user-card-name">{{org.name}}</div>
+                        <!-- <div class="user-status">{{org.institute}}</div> -->
+                        <div class="user-card-institute">{{org.institute}}</div>
+                    </div>
+                    <div class="user-card-contact">
+                        <div class="social-content-container">
+                            <div class="user-phone-container social-container"><i class="fa-solid fa-phone"></i> <span class="social-text">{{org.phoneNo}}</span></div>
+                            <div class="user-mail-container  social-container"><i class="fa-solid fa-envelope"></i><span class="social-text">{{org.email}}</span></div>
+                            <div class="user-linkedin-container social-container"><i class="fa-brands fa-linkedin-in"></i><a class="social-text">{{org.linkedin}}</a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="profile-info-content-container">
+              
+                
+                <div class="user-description-container transition">
+                    <div class="edit-profile-container">
+                        <button class="edit-profile-btn" style="background-color: rgb(158, 7, 7);">Report  <i class="fa fa-flag" aria-hidden="true"></i></button>
+                    </div>
+                    <div class="desc-container">
+                        <div class="desc-heading">About Organisation</div>
+                        <div class="desc-content">{{org.description}}</div>
+                    </div>
+
+                    
+                </div>
+                <form action="{{ url_for('viewOrgProfile',lid=org.lid) }}" class="profile-edit-form hidden" method="POST" novalidate enctype="multipart/form-data">
+                    <div class="row-form">
+                    <textarea class="update-profile-input" name="description" id="" cols="10" rows="30" placeholder="Why are you reporting this page?"></textarea>
+                    </div>
+                    <button type="submit" name="report" id="report" value="report">Report</button>
+                </form>
+                
+                <div class="clientDashboard-container container-2">
+                    <div class="events-heading heading">
+                        <div class="events-heading">Events</div>
+                        <div class="load-more events-lm">Load More</div>
+                    </div>
+                    <div class="institute-cards-container">
+
+                        <!-- Single card -->
+                        {% for event in events %}
+                        <a href="{{url_for('eventPage',eid=event.eid)}}" style="text-decoration: none">
+                        <div class="institute-card" style="background: url('../static//images/events/{{event.eventImg}}'); background-size: cover; background-repeat: no-repeat;">
+                            <div class="ic-content-container">
+                                <div class="ec-event-heading" style="font-size: 16px">{{event.name}}</span></div>
+                                <div class="ec-event-date">{{event.date}}</div>
+                                <div class="ec-event-domain">{{event.domain}}</div>
+                            </div>
+                        </div>
+                        </a>
+                        {% endfor %}
+        
+                    </div>
+                </div>
+
+                
+            </div>
+        </div>
+
+        <!-- Add hidden class for organisation -->
+        <!-- User certificate container -->
+        <div class="certificate-container transition">
+
+        </div>
+    </div>
+
+    <script src="../static//javascript/profilePage.js"></script>
+    
+</body>
+</html>

@@ -1,0 +1,15 @@
+@font-face {
+	font-family: 'GothamLight';
+<<<<<<< HEAD
+	src: url(../../assets/fonts/./GothamLight.eot) format('embedded-opentype'),
+	url(../../assets/fonts/./GothamLight.woff) format('woff'),
+	url(../../assets/fonts/./GothamLight.ttf) format('truetype');
+=======
+	src: url(../fonts/GothamLight.eot) format('embedded-opentype'),
+	url(../fonts/GothamLight.woff) format('woff'),
+	url(../fonts/GothamLight.ttf) format('truetype');
+>>>>>>> ce6022c8f095cb5b7ece00a010cf4570ce334a4d
+	font-weight: 400;
+	font-style: normal;
+	font-display: auto;
+}

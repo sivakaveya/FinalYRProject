@@ -1,0 +1,74 @@
+﻿<html>
+    <head>
+        <style>
+            body {
+                margin: 0 auto;
+                padding: 0;
+                font-size: 12pt;
+                background: rgb(204,204,204);
+            }
+
+            * {
+                box-sizing: border-box;
+                -moz-box-sizing: border-box;
+            }
+
+            .main-page {
+                width: 216mm;
+                min-height: 70mm;
+                margin: 10mm auto;
+                background: white;
+                background-image: url("/static/images/bg.png");
+                background-size: contain;
+                box-shadow: 0 0 0.5cm rgba(0,0,0,0.5);
+            }
+
+            .sub-page {
+                padding: 1cm;
+                height: 70mm;
+            }
+            @page {
+                size: auto;
+                margin: 0;
+            }
+
+            @media print {
+                html, body {
+                    width: 216mm;
+                    height: 70mm;
+                }
+
+                .main-page {
+                    margin: 0;
+                    border: initial;
+                    border-radius: initial;
+                    width: initial;
+                    min-height: initial;
+                    box-shadow: initial;
+                    background: initial;
+                    page-break-after: always;
+                }
+            }
+
+           
+        </style>
+    </head>
+    <body>
+        <div class="main-page">
+            <div class="sub-page">
+                <img src="static/images/logo.png" width="10%" />
+                <h1 align='center'>{{event_name}}</h1>
+                <p align='center'>{{organisation_name}}</p>
+                <p align='left'>{{event_date}}</p>
+                {% if valid ==1 %}
+                <p align='right'><a href="{{venue}}" style="text-decoration: none; padding-right: 10mm;">Click Here to attend</a></p>
+                {% else %}
+                <p align='right' style=" padding-right: 10mm;">{{venue}}</p>
+                {% endif %}
+                <br />
+               
+            </div>
+        </div>
+    </body>
+
+</html>

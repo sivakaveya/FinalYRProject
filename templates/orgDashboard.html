@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Organisation Dashboard</title>
+    <link rel="stylesheet" href="../static//stylesheet/commonCode.css">
+    <link rel="stylesheet" href="../static//stylesheet/orgDashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css"
+        integrity="sha512-10/jx2EXwxxWqCLX/hHth/vu2KY3jCF70dCQB8TSgNjbCVAC/8vai53GfMDrO2Emgwccf2pJqxct9ehpzG+MTw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+
+    <div class="main-container">
+
+        <div class="navbar-container">
+            <div class="nv-logo">
+                <img src="../static//images/Logo.png" alt="">
+            </div>
+            <div class="nv-links">
+                <div class="add-event"> <a href="/addEvent"><button class="add-event-btn">Add Event</button></a></div>
+                <div class="nv-icons notification-icon"><i class="fa-solid fa-bell"></i>
+                    <div class="notification-box-container">
+                        <div class="notification-box-content-container">
+                            <div class="notification-cards-container">
+                                <!-- Single Cards -->
+
+                                {% for notification,org in notifications.items() %}
+                                <div class="notification-card-container" id="{{notification.eid}}">
+                                    <div class="notification-image-container" style="height: 85%; width: 15%; border-radius: 50%; background: url('../static/images/profile/{{org.profile_photo}}')">
+                                        <!-- Organisation image -->
+                                    </div>
+                                    <div class="notification-content-container">
+                                        <div class="clear-current-notification-btn">
+                                                <button name="delete_not" id="delete_not" type="submit" 
+                                                onclick="function1('{{notification.eid}}')"
+                                                value="{{notification.eid}}" style="background: none;
+                                                                                color: inherit;
+                                                                                border: none;
+                                                                                padding: 0;
+                                                                                font: inherit;
+                                                                                cursor: pointer;
+                                                                                outline: inherit;"> 
+                                                                                <i class="fa-solid fa-xmark"></i>
+                                                                            </button>
+                                        </div>
+                                        <div class="notification-message">{{notification.message}}</div>
+                                        <div class="notification-org-name">- {{org.name}}</div>
+                                        <div class="notification-time">Just Now</div>
+                                    </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                            <div class="clear-all-notification">Clear All</div>
+                        </div>
+                    </div>
+                </div>
+                <a href="/logout" style="text-decoration: none;">
+                    <div class="nv-icons logout-btn"><i class="fa-solid fa-arrow-right-from-bracket"></i> <span class="logout-text">Logout</span></div>
+                </a>
+            </div>
+        </div>
+
+        <div class="container-1 orgDashboard-container">
+
+            <div class="user-info-container"><a href="{{url_for('orgprofile',lid=session['lid'])}}"
+                    style="text-decoration: none; color: inherit;">
+                    <div class="text-container">
+
+                        <div style="text-transform: capitalize;" class="user-text">
+                            <div class="hello"> Hello, </div>{{session['name']}}
+                        </div>
+
+                        <div class="edit-text">edit</div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="reminder-container">
+
+                <div class="reminder-heading-container">
+                    <div class="reminder-heading">Upcoming Events</div>
+                    <div class="view-more reminder-vm">View More</div>
+                </div>
+
+                <div class="reminder-cards-container">
+
+                    <!-- Single card -->
+                    {% for key,value in ongoing.items() %}
+                    <a href="{{url_for('event_page_org',eid=key.eid)}}" style="text-decoration: none">
+
+                    <div class="reminder-card ongoing-rc">
+                        <div class="rc-content-container">
+                            <div class="rc-text-container">
+                                <div class="rc-heading">{{key.name}}</div>
+                                <div class="rc-status">Ongoing</div>
+                                <div class="rc-time">{{key.time}} - {{key.endTime}}</div>
+                            </div>
+                            <div class="righthalf-rc-card">
+                                <div class="registration-no"> <span class="reg-no">{{value}}</span>
+                                    <div class="registration-text">Registration</div>
+                                </div>
+                                <button class="join-btn-container">Join Now</button>
+                            </div>
+                        </div>
+                    </div>
+                    </a>
+                    {% endfor %}
+
+                    {% for key,value in reg_open.items() %}
+                    <a href="{{url_for('event_page_org',eid=key.eid)}}" style="text-decoration: none">
+
+                    <div class="reminder-card">
+                        <div class="rc-content-container">
+                            <div class="rc-text-container">
+                                <div class="rc-heading">{{key.name}}</div>
+                                <div class="rc-status">{{key.date}}</div>
+                                <div class="rc-time">{{key.time}} - {{key.endTime}}</div>
+                            </div>
+                            <div class="righthalf-rc-card">
+                                <div class="registration-no"> <span class="reg-no">{{value}}</span>
+                                    <div class="registration-text">Registration</div>
+                                </div>
+                                <form action="/organisationDashboard" method="POST" novalidate class="signup-form">
+                                    <button class="close-registration-layout close" type="submit" value="{{key.eid}}"
+                                        name="close_reg">Close Registration</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    </a>
+                    {% endfor %}
+
+                    {% for key,value in reg_close.items() %}
+                    <a href="{{url_for('event_page_org',eid=key.eid)}}" style="text-decoration: none">
+                    <div class="closed-rc reminder-card">
+                        <div class="rc-content-container">
+                            <div class="rc-text-container">
+                                <div class="rc-heading">{{key.name}}</div>
+                                <div class="rc-status">{{key.date}}</div>
+                                <div class="rc-time">{{key.time}} - {{key.endTime}}</div>
+                            </div>
+                            <div class="righthalf-rc-card">
+                                <div class="registration-no"> <span class="reg-no">{{value}}</span>
+                                    <div class="registration-text">Registration</div>
+                                </div>
+                                <button class="close-registration-layout closed" type="button" disabled>Registrations
+                                    Closed</button>
+                            </div>
+                        </div>
+                    </div>
+                    </a>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+        <div class="container-2 orgDashboard-container">
+            <div class="previous-events-container">
+                <div class="previous-events-heading">Previous Events</div>
+                <div class="view-more previous-events-vm">View more</div>
+            </div>
+            <!-- All Cards -->
+            <div class="previous-events-cards-container">
+                <!-- Only first row -->
+                <div class="first-row-events-card">
+                    {% for key,value in completed.items() %}
+                    <div class="p-event-card-bg-container"  id="{{key.eid}}" 
+                    onclick="myfunc('{{key.eid}}','{{key.name}}','{{key.date}}','{{key.domain}}','{{key.eventImg}}','{{key.orgImg}}','{{key.description}}',{{value['count']}}, {{value['individual']}})">
+                        <div class="p-event-card-bg p-event-card-el">
+                            <div class="p-event-content-container">
+                                <div class="p-event-card"
+                                    style="background: url('./static//images/events/{{key.eventImg}} ');object-fit: cover;; background-size: cover; background-repeat: no-repeat;">
+                                    <div class="pe-content-container">
+                                        <div class="pe-event-heading">{{key.name}}</div>
+                                        <div class="pe-event-date">{{key.date}}</div>
+                                        <div class="pe-event-domain">{{key.domain}}</div>
+                                    </div>
+                                </div>
+                                <div class="p-event-righthalf">
+                                    <div class="p-event-stats">
+                                        <div class="p-event-participants"><span
+                                                class="participants-number gotham-medium">{{value['count']}}</span><span
+                                                class="participants-text gotham-medium">Registerations</span></div>
+                                        <div class="p-event-registrations"></div>
+
+                                    </div>
+                                    <div class="p-event-btns-container">
+                                        <button class="download-report-btn" value="{{key.eid}}"
+                                        onclick="funct3('{{key.name}}','{{key.domain}}')">Download
+                                        Report</button>
+                                        <form action="/organisationDashboard" id="send_certificate" method="POST"
+                                        novalidate enctype="multipart/form-data" style="width: 100%">
+                                            <button class="send-certificate-btn" name="send_cert"
+                                                value="{{key.eid}}" type="submit">Send Certificate</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                <!-- Remaining Rows -->
+                <div class="p-event-card-container">
+                    <!-- Single Card -->
+                    <!-- {% for key,value in completed_sentcert.items() %} -->
+                    <div class="p-event-card-sm-container p-event-card-el" value="{{key.eid}}"
+                        onclick="myfunc('{{key.eid}}','{{key.name}}','{{key.date}}','{{key.domain}}','{{key.eventImg}}','{{key.orgImg}}','{{key.description}}',{{value['count']}},{{value['individual']}})">
+                        <div class="p-event-sm-card"
+                            style="background: url('./static//images/events/{{key.eventImg}} ');object-fit: cover;; background-size: cover; background-repeat: no-repeat;">
+                            <div class="pe-content-container">
+                                <div class="pe-event-heading">{{key.name}} </div>
+                                <div class="pe-event-date">{{key.date}}</div>
+                                <div class="pe-event-domain">{{key.domain}}</div>
+                            </div>
+                        </div>
+
+                        <button id="reportbutton" class="download-report-btn download-btn-sm"
+                            value="{{key.eid}}" onclick="funct3('{{key.name}}','{{key.domain}}')">Download
+                            Report</button>
+                    </div>
+                    <!-- {% endfor %} -->
+
+                </div>
+                   
+            </div>
+            <div class="pop-up-container">
+
+                <div class="event-info-container">
+
+                    <div class="event-popup-content-container">
+
+                        <div class="e-popup-lefthalf">
+
+                            <div class="pe-card-container">
+                                <div class="events-card od-events-card" id="bg">
+                                    <div class="ec-content-container">
+                                        <div class="org-logo" id="org"
+                                            style="background: url('../static//images/apple.png') ; object-fit: cover; border: 50%; width: 2rem; height: 2rem;">
+                                        </div>
+                                        <div class="event-description" id="event-description">. At aliquid eligendi
+                                            voluptatem
+                                            voluptatibus, maiores, autem perferendis excepturi fuga nobis quaerat magni
+                                            quo!
+                                            Voluptas explicabo tenetur blanditiis .</div>
+                                        <div class="ec-event-heading" id="heading">Blockchain</div>
+                                        <div class="ec-event-date" id="date">28/03/2022</div>
+                                        <div class="ec-event-domain" id="domain">Domain</div>
+                                    </div>
+                                </div>
+                                <div class="download-container">
+                                    <button class="download-poster">Download Poster</button>
+                                    <button class="download-list">Download List</button>
+                                </div>
+                            </div>
+
+                            <div class="pe-popup-stats">
+                                <div class="participants-stats selected">
+                                    <div class="p-number-stats number-stats" id="reg">39</div>
+                                    <div class="text-stats">Registerations</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="user-list-container" id="user">
+
+
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="user-info-popup-container">
+
+                    <div class="info-popup-content-container">
+                        <div class="uipu-icon-container">
+                            <i class="fa-solid fa-angle-left icon backToEventInfo"></i>
+                            <i class="fa-solid fa-xmark icon userPuClose"></i>
+                        </div>
+
+                        <div class="userpu-info-container">
+                            <div class="user-text-container">
+                                <div class="pu-user-name" id="uname">Shrey Solanki</div>
+                                <div class="user-institute" id="uinstitute">Vidyalankar Institute of Technology</div>
+                            </div>
+                            <div class="user-image-container" id="uimg"></div>
+                            <div class="user-description" id="udescription">Lorem ipsum dolor sit, amet consectetur
+                                adipisicing elit. Quas quia
+                                minus et ipsum culpa aspernatur animi nostrum unde fuga porro, eligendi odit eos eius
+                                esse nobis
+                                aliquid sequi ipsa ex.
+                                Necessitatibus eaque sunt accusamus reiciendis quae? Ea repudiandae eaque esse beatae
+                                sunt
+                                voluptas aliquam, corrupti laborum ad magnam adipisci deserunt provident voluptatum.
+                                Mollitia
+                                obcaecati ipsam laboriosam quam deleniti ipsum quibusdam!</div>
+                        </div>
+                        <div class="user-social-container">
+                            <a href="" id="uemail" target=”_blank”><i class="fa-solid fa-envelope"></i></a>
+                            <i onclick="copy('9999')" id="uphoneNo" class="fa-solid fa-phone"></i>
+                            <a href="" id="ulinkedin" target=”_blank”><i class="fa-brands fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="report-popup-container">
+
+                    <div class="report-content-container">
+                        <div class="close-report-popup"><i class="fa-solid fa-xmark icon reportPuClose"></i></div>
+                        <div class="report-event-heading" id="report_name">Drone Programming</div>
+                        <div class="report-event-type" id="report_domain">Workshop</div>
+                        <div class="report-heading">Report</div>
+                        <form action="/organisationDashboard" class="profile-edit-form hidden" method="POST" novalidate
+                            enctype="multipart/form-data">
+
+                            <textarea name="summary" id="" cols="40" rows="10" class="report-summary"></textarea>
+                            <div class="add-photo-container">
+                                <div class="added-photo-preview"></div>
+                                <label for="report-image" class="add-image-container">
+                                    <i class="fa-solid fa-plus add-report"></i>
+                                    <input type="file" name="img1" id="report-image" accept="images/*">
+                                </label>
+                            </div>
+                            <button class="download-popup-report" type="submit" name="report" id="download_report"
+                                value="report">Download</button>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+            <script src="https://code.jquery.com/jquery-3.5.1.js"
+          integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+          crossorigin="anonymous"></script>
+
+            <script src="../static//javascript/orgDashboard.js">
+            </script>
+            <script>
+                function myfunc(eid, name, date, domain, eventImage, orgImage, description,reg,m) {
+                    img = "../static//images/events/" + eventImage
+                    orgimg = "../static//images/profile/" + orgImage
+                    console.log(reg)
+
+                    // console.log(typeof m)
+                    document.getElementById("bg").style.backgroundImage = 'url(' + img + ')';
+                    /////org ka img ngi dikh raha..pls check/////////
+                    document.getElementById("org").style.backgroundImage = 'url(' + orgimg + ') ';
+                    document.getElementById("event-description").innerHTML = description;
+                    document.getElementById("heading").innerHTML = name;
+                    document.getElementById("date").innerHTML = date;
+                    document.getElementById("domain").innerHTML = domain;
+                    document.getElementById("reg").innerHTML = reg;
+
+                    //change the list of registered 
+
+                    let element = document.getElementById("user");
+                    element.innerHTML = '';
+                    for (const [key, value] of m.entries()) {
+                        uimg = '../static//images/profile/' + value['profile_photo']
+                        let newContent = `
+                <div class="single-user-container" id="user"
+                onclick="myfunc2('`+ value['name'] + `','` + value['institute'] + `','` + value['description'] + `','` + value['profile_photo'] + `','` + value['email'] + `','` + value['phoneNo'] + `','` + value['linkedin'] + `')">
+                    <div class="user-photo" style="background: url(`+ uimg + `); object-fit:cover; height: 2.25rem;width: 2.25rem;border-radius: 50%;"></div>
+                    <div class="user-name">`+ value['name'] + `</div>
+                </div>  
+            `;
+                        element.innerHTML += newContent;
+                    }
+
+                }
+
+                function myfunc2(name, institute, description, uimg, email, phoneNo, linkedin) {
+                    console.log(name)
+                    console.log(institute)
+                    console.log(description)
+                    close(document.querySelector('.event-info-container'));
+                    document.querySelector('.user-info-popup-container').style.display = 'flex';
+                    document.getElementById("uname").innerHTML = name;
+                    document.getElementById("uinstitute").innerHTML = institute;
+                    document.getElementById("udescription").innerHTML = description;
+                    uimg = '../static//images/profile/' + uimg
+                    document.getElementById("uimg").style.backgroundImage = 'url(' + uimg + ')';
+                    email = 'https://mail.google.com/mail/?view=cm&to=' + email
+                    document.getElementById("uemail").href = email
+                    document.getElementById("uphoneNo").setAttribute("onclick", "copy(" + phoneNo + ")");
+                    document.getElementById("ulinkedin").href = linkedin
+                }
+
+                function funct3(name, domain) {
+                    document.getElementById("report_name").innerHTML = name;
+                    document.getElementById("report_domain").innerHTML = domain;
+                }
+
+                function copy(no) {
+                    navigator.clipboard.writeText(no);
+                }
+
+                const bellIcon = document.querySelector('.fa-bell');
+                const notificationBox = document.querySelector('.notification-box-container');
+                let isNotificationOpen = false;
+
+                function handleNotificationBox() {
+                    if(isNotificationOpen) {
+                        notificationBox.style.display = 'flex';
+                    } else {
+                        notificationBox.style.display = 'none';
+                    }
+                };
+
+                bellIcon.addEventListener('click', () => {
+                    console.log('bell clicked');
+                    isNotificationOpen = !isNotificationOpen;
+                    handleNotificationBox();
+                });
+
+                function function1(eid){
+                    document.getElementById(eid).style.display = 'none';
+                    console.log('hi!')
+                    $.ajax({
+                        url: '/organisationDashboard',
+                        type: "POST",
+                        data: {
+                                    delete_not:eid
+                            },
+                    });
+                }
+
+
+            </script>
+
+
+</body>
+
+</html>

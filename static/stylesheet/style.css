@@ -1,0 +1,131 @@
+/* for setting up tabs and activity page */
+* {box-sizing: border-box}
+
+/* Set height of body and the document to 100% */
+/*body, html {
+    height: 100%;
+    width: 85%;
+    margin-left: 15%;
+    font-family: helvetica;
+  }
+  */
+
+  /* Style tab links */
+  .tablink {
+    background-color: #555;
+    color: white;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 7px 7px;
+    font-size: 10px;
+    width: 20%;
+  }
+  
+  .tablink:hover {
+    background-color: #777;
+  }
+  
+  /* Style the tab content (and add height:100% for full page content) */
+  .tabcontent {
+    color: black;
+    background-color: #F2F2F2;
+    display: inline-block;
+    text-align: center;
+    padding: 5%;
+    width: 1000px;
+    height: 100%;
+    border: 1px solid #ffffff;
+    overflow-x:hidden;
+    overflow-y: hidden;
+  }
+  
+  .poster{
+      width:45%;
+      margin-right: 2%;
+      display:inline-block;
+      float:left;
+  }
+  
+  .text-block{
+      display: inline-block;
+      margin-left: 2%;
+      width: 45%;
+      float: left;
+      color: #000000;
+      padding-left: 3%;
+      padding-right: 3%;
+      
+  }
+  
+  .desc{
+      clear: both;
+  }
+
+  
+  
+  
+  #Activity {background-color:#E3E3E3;}
+  #Media {background-color: #E3E3E3;}
+  #About {background-color:#E3E3E3;}
+
+
+  /* FOR MEDIA CARDS */
+  * {
+    box-sizing: border-box;
+  }
+  
+  /*body {
+    font-family: Arial, Helvetica, sans-serif;
+  }*/
+  
+  /* Float three columns side by side */
+  .column {
+    float: left;
+    width: 33.33%;
+    height: auto;
+    padding: 2%;
+  }
+  
+  /* Remove extra left and right margins, due to padding */
+  .row {margin: 0 -5px;}
+  
+  /* Clear floats after the columns */
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+    
+  }
+  
+  /* Responsive columns */
+  @media screen and (max-width: 600px) {
+    .column {
+      width: 100%;
+      display: block;
+      margin-bottom: 20px;
+    }
+  }
+  
+  /* Style the counter cards */
+  .media-card {
+    
+    padding: 16px;
+    text-align: center;
+    background-color: #f1f1f1;
+  }
+
+  
+  /* FOR ABOUT TAB */
+
+  .details{
+    text-align: left;
+    padding: 2%;
+  }
+
+  .members{
+      text-align: center;
+      
+  }
+  

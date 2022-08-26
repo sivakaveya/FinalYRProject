@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search</title>
+    <link rel="stylesheet" href="../static//stylesheet/commonCode.css">
+    <link rel="stylesheet" href="../static//stylesheet/searchPage.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css" integrity="sha512-10/jx2EXwxxWqCLX/hHth/vu2KY3jCF70dCQB8TSgNjbCVAC/8vai53GfMDrO2Emgwccf2pJqxct9ehpzG+MTw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <div class="main-container">
+        <div class="navbar-container">
+            <div class="nv-logo">
+                <div class="nv-back-container nv-icons"><i class="fa-solid fa-arrow-left"></i></div>
+                <img src="../static//images/Logo.png" alt="">
+            </div>
+            <div class="nv-links">
+                <div class="nv-icons search-bar-container">
+                    <input type="text" name="search-bar" onkeyup="Search(this.value)" id="search-input" class="search-bar" placeholder="Find your next event"/>
+                </div>
+                <div class="container-1-nv">
+                    <div class="nv-icons notification-icon"><i class="fa-solid fa-bell"></i>
+                        <div class="notification-box-container">
+                            <div class="notification-box-content-container">
+                                <div class="notification-cards-container">
+                                    <!-- Single Cards -->
+    
+                                    {% for notification,org in notifications.items() %}
+                                    <div class="notification-card-container" id="{{notification.eid}}">
+                                        <div class="notification-image-container" style="height: 85%; width: 15%; border-radius: 50%; background: url('../static/images/profile/{{org.profile_photo}}')">
+                                            <!-- Organisation image -->
+                                        </div>
+                                        <div class="notification-content-container">
+                                            <div class="clear-current-notification-btn">
+                                                    <button name="delete_not" id="delete_not" type="submit" 
+                                                    onclick="function1('{{notification.eid}}')"
+                                                    value="{{notification.eid}}" style="background: none;
+                                                                                    color: inherit;
+                                                                                    border: none;
+                                                                                    padding: 0;
+                                                                                    font: inherit;
+                                                                                    cursor: pointer;
+                                                                                    outline: inherit;"> 
+                                                                                    <i class="fa-solid fa-xmark"></i>
+                                                                                </button>
+                                            </div>
+                                            <div class="notification-message">{{notification.message}}</div>
+                                            <div class="notification-org-name">- {{org.name}}</div>
+                                            <div class="notification-time">Just Now</div>
+                                        </div>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                                <div class="clear-all-notification">Clear All</div>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="/logout" style="text-decoration: none;"><div class="nv-icons logout-btn"><i class="fa-solid fa-arrow-right-from-bracket"></i> <span class="logout-text">Logout</span></div></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="sorting-container">
+            <div class="button-container latest-btn">
+                <button> <div class="button-text gotham-medium"> Latest Events </div> </button>
+            </div>
+            <div class="button-container accending-sort">
+                <button> <div class="button-text gotham-medium"> Price: Low to High </div></button>
+            </div>
+            <div class="button-container descending-sort">
+                <button> <div class="button-text gotham-medium"> Price: High to Low </div></button>
+            </div>
+        </div>
+
+        <div class="container-2">
+            <div class="filter-box-container">
+                <div class="filter-content-container">
+                    <form action="/search" method="post" class="filter-form">
+                        <div class="filter-text-container">
+                            <i class="fa-solid fa-filter"></i>
+                            <div class="filter-text">Filter</div>
+                        </div>
+                        <div class="filter-row-container domain-container">
+                            <div class="row-heading-text">Domain</div>
+                            <div class="row-input">
+                                <input type="text" name="domain" id="" placeholder="Eg. UI/UX Design">
+                            </div>
+                        </div>
+                        <div class="filter-row-container location-container">
+                            <div class="row-heading-text">Location</div>
+                            <div class="row-input">
+                                <input type="text" name="location" id="" placeholder="Eg. Mumbai">
+                            </div>
+                            <div class="filter-checkbox">
+                                <input type="checkbox" name="venue" value="online" id="">
+                                <label for="">Online</label>
+                            </div>
+                            <div class="venue-container">
+                                <div class="filter-checkbox">
+                                    <input type="checkbox" name="venue" value="national" id="">
+                                    <label for="">National</label>
+                                </div>
+                                <div class="filter-checkbox">
+                                    <input type="checkbox" name="venue" value="international" id="">
+                                    <label for="">International</label>
+                                </div>
+                            </div>
+                            <div class="date-input">
+                                <input type="date" name="date" id="#date-input" style="width: 100%;
+                                background: hsla(0, 0%, 0%, 0.07) 0% 0% no-repeat padding-box; 
+                                border: none; height: 35px; border-radius: 5px; padding: 15px">
+                            </div>
+                        </div>
+                        <div class="filter-row-container institute-container">
+                            <div class="row-heading-text">Type</div>
+                            <div class="row-input">
+                                <input type="text" name="etype" id="" placeholder="Eg. Workshop">
+                            </div>
+                        </div>
+                        <div class="price-container">
+                            <div class="row-heading-text">Spend Upto</div>
+                            <div class="row-input slider-input">
+                                <input type="range" name="money" id="" min="0" max="3000" oninput="this.nextElementSibling.value = this.value" class="input-range">
+                                <output>100</output>
+                            </div>
+                            <div class="filter-checkbox">
+                                <input type="checkbox" name="free" value="free" id="">
+                                <label for="">Free Events</label>
+                            </div> 
+                        </div>
+
+                        <button class="filter-submit" type="submit">Filter</button>
+                    </form>
+                </div>
+            </div>
+            <div class="filtered-card-box-container" id="filtered-cards">
+
+                <!-- Single Card -->
+                {% for eve in exevents %}
+                <a href="{{eve.url}}" class="searched-cards" style="text-decoration: none;" target="_blank">
+                <div class="filtered-card-container">
+                    <div class="fc-left-half">
+                        <div class="left-half-content-container">
+                            <img class="course-image" src="{{eve.image}}" alt="">
+                            <div class="course-content-background">
+                                <div class="course-content-container">
+                                    <!-- <div class="domain-heading">{{eve.detail}}</div> -->
+                                    <div class="course-details-container">
+                                        <div class="course-name">{{eve.name}}</div>
+                                        <div class="course-date">{{eve.date}}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="fc-right-half">
+                        <div class="fc-row1 fc-row">{{eve.name}}</div>
+                        <div class="fc-row2 fc-row">
+                            <div class="fc-timings">
+                                <div class="fc-date">March 22</div>
+                                <div class="fc-time">{{eve.date}}</div>
+                            </div>
+                        </div>
+                        <div class="fc-row3 fc-row">{{eve.price}}</div>
+                    </div>
+                </div>
+            </a>
+        {% endfor %}
+
+              
+    <script>
+        // {% for ev in exevents %}
+        //     var event = {
+        //         name: '{{ ev.name }}',
+        //         url: '{{ ev.url }}',
+        //         date: '{{ ev.date }}',
+        //         details: '{{ ev.detail }}'
+
+        //     };
+        //     events.push(event);
+        // {% endfor %}
+        // console.log(event);
+        const bellIcon = document.querySelector('.fa-bell');
+        const notificationBox = document.querySelector('.notification-box-container');
+        let isNotificationOpen = false;
+        let sortingButton = document.querySelectorAll('.button-container');
+
+        function handleNotificationBox() {
+            if(isNotificationOpen) {
+                notificationBox.style.display = 'flex';
+            } else {
+                notificationBox.style.display = 'none';
+            }
+        };
+
+        bellIcon.addEventListener('click', () => {
+            console.log('bell clicked');
+            isNotificationOpen = !isNotificationOpen;
+            handleNotificationBox();
+        });
+
+        function close(ele) {
+            ele.style.display = 'none';
+        }
+
+        sortingButton.forEach(button => {
+            button.addEventListener('click', () => {
+                button.classList.toggle('active');
+            })
+        })
+    </script>
+    <script>
+        // function search_events(){
+        //     var input=document.getElementById('search-input');
+        // filter=input.value.toLowerCase();
+        // let cards=document.getElementsByClassName('searched-cards');
+        // let x=document.getElementsByClassName('course-name');
+        // console.log(cards);
+        // for(i=0;i<cards.length;i++)
+        // {
+        //     console.log(1)
+            
+        //     if(!x[i].innerHTML.toLowerCase().includes(input)){
+        //         cards[i].style.display='none';
+        //         console.log(2)
+        //     }
+        //     else{
+        //         cards[i].style.display='block';
+        //     }
+            
+        // }
+        // }
+        
+        function Search(item){
+            var collection = document.getElementsByClassName("searched-cards");
+            var search = document.getElementsByClassName('course-name');
+            for (i = 0;i < search.length; i++){
+                if (((collection[i].innerHTML).toLowerCase()).indexOf(item) > -1) {
+                    collection[i].style.display = "block";
+                    } else {
+                        collection[i].style.display = "none";
+                        }
+            }
+    }
+    </script>
+</body>
+</html>

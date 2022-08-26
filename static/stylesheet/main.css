@@ -1,0 +1,95 @@
+* {
+	text-decoration: none;
+	list-style: none;
+	overflow-x: hidden;
+	/*background-color: #F1E7D9; */
+}
+
+body {
+	background-color: #F1E7D9; 
+}
+
+.container-fluid {
+	margin: auto;
+	padding: 0;
+}
+
+/*Navbar*/
+
+.sidebar {
+	margin: 2rem 0 2rem 1.5rem;
+	padding-left: 0.8rem!important;
+	padding-top: 1rem!important;
+	padding-bottom: 1rem!important;
+	width: 10%;
+	height: 100%;
+}
+
+.sidebar ul {
+	padding: 0;
+	margin: 0;
+}
+
+span.nav-list {
+	display: none;
+}
+
+i.nav-links {
+	display:flex;
+	justify-content: center;
+	align-items: center;
+	border: 2px solid black;
+	height: 50px;
+	width: 50px;
+	margin: 15px 0 15px 10px;
+	border-radius:50%;
+	transition: all 0.2s linear;
+	background-color: #482e4b;
+	color: #f0d9ce;
+}
+
+i.nav-links:hover{
+	cursor:pointer;
+	background:#8c658c;
+	filter: drop-shadow(0 0 0.6rem grey);
+}
+
+/*Main Content*/
+.main_content {
+	width: 100%;
+	margin-bottom: 10%!important;
+	background-color: #F1E7D9;
+}
+
+/*Account Buttons*/
+
+.student_btn {
+	background-color: #482e4b;
+	color: #f0d9ce;
+}
+
+.student_btn:hover {
+	background-color: #482e4b;
+	color: #f0d9ce;
+}
+
+.bottom {
+	position: fixed;
+	width: 100%;
+	bottom: 0;
+	right: 0;	
+	padding: 25px;
+	margin-top: 20px;
+	/*margin-left: 10%;*/
+	/*z-index: -1;*/
+}
+
+.acc-buttons {
+	top: 15px;
+	float: right;
+	margin-right: 10px;
+}
+
+.button-icon {
+	padding-right: 5px;
+}

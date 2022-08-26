@@ -1,0 +1,33 @@
+img.club-logo {
+	width: 4.5rem;
+	height: 4.5rem;
+    border: 1px solid black;
+    border-radius: 100%;
+    margin: 0.5rem;
+    margin-left: 0.7rem;
+}
+
+div.clubs {
+    margin: 2rem;
+    /*display: none;*/
+}
+
+.mb-3 {
+    background-color: #8c658c!important;
+    word-wrap: normal;
+    border-radius: 10px;
+    color: white!important;
+}
+
+.mb-3:hover {
+    box-shadow: 0 0 15px rgba(33,33,33,.5); 
+}
+
+h5 {
+    line-height: normal;
+}
+
+#searchbar {
+    background-color: #F1E7D9!important;
+    margin: 0px;
+}

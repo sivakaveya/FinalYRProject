@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <link rel="stylesheet" href="../static//stylesheet/commonCode.css">
+    <link rel="stylesheet" href="../static//stylesheet/profile.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css" integrity="sha512-10/jx2EXwxxWqCLX/hHth/vu2KY3jCF70dCQB8TSgNjbCVAC/8vai53GfMDrO2Emgwccf2pJqxct9ehpzG+MTw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <div class="main-container-profile">
+        <div class="navbar-container">
+            <div class="nv-logo" style="display: flex; justify-content: space-between; align-items: center;">
+                <img src="../static/images/Logo.png" alt="" >
+                <!-- <div class="dashboard-text">Dashboard</div> -->
+            </div>
+            <div class="nv-links">
+
+                <div class="nv-icons search-icon"><a href="/search"><i class="fa-solid fa-magnifying-glass"></i></a></div>
+                <div class="notification-icon"><i class="fa-solid fa-bell"></i></div>
+                <a href="/logout" style="text-decoration:none;"><div class="logout-btn"><i class="fa-solid fa-arrow-right-from-bracket"></i> <span class="logout-text">Logout</span> </div></a>
+            </div>
+        </div>
+        <!-- Banner container -->
+        <label  for="eimg" class="profile-banner-container">
+            <div class="profile-banner-background"></div>
+            <img class="profile-banner-image"  alt="" src="../static/images/profile/{{org.cover_photo}}" style="object-fit: cover;">
+            <form action="{{ url_for('orgprofile',lid=session['lid']) }}" name="profileImg" id="profileImg" method="POST" novalidate enctype="multipart/form-data" style="display: none">
+                <input id="eimg" type="file" name="profileBanner">
+                <br>
+                <button type="submit" name="changeBanner" id="changeBanner" value="changeBanner">Change Banner</button>
+            </form>
+        </label>
+
+
+        <!-- User info container -->
+        <div class="profile-info-container">
+            
+            <div class="profile-info-card-container">
+                
+                <div class="card-content-container">
+                    <label for="user-image-input" class="user-profile-image">
+                        <img src="../static/images/profile/{{org.profile_photo}}" alt="" style="object-fit: cover;"/>
+                    </label>
+                    
+                        
+                        <form action="{{ url_for('orgprofile',lid=session['lid']) }}" name="profileImg" id="profileImg" method="POST" novalidate enctype="multipart/form-data" style="display: none">
+                            <input id="user-image-input" type="file" name="profileImage">
+                            <!-- <input type="text" name="hi"> -->
+                            <button type="submit" name="changeImg" id="changeImg" value="changeImg">Change Profile</button>
+                        </form>
+                    
+                </div>
+                <div class="user-info transition">
+                    <div class="user-card-info">
+                        <div class="user-card-name">{{org.name}}</div>
+                        <!-- <div class="user-status">{{org.institute}}</div> -->
+                        <div class="user-card-institute">{{org.institute}}</div>
+                    </div>
+                    <div class="user-card-contact">
+                        <div class="social-content-container">
+                            <div class="user-phone-container social-container"><i class="fa-solid fa-phone"></i> <span class="social-text">{{org.phoneNo}}</span></div>
+                            <div class="user-mail-container  social-container"><i class="fa-solid fa-envelope"></i><span class="social-text">{{org.email}}</span></div>
+                            <div class="user-linkedin-container social-container"><i class="fa-brands fa-linkedin-in"></i><a class="social-text">{{org.linkedin}}</a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="profile-info-content-container">
+                
+                <div class="edit-profile-container">
+                    <button class="edit-profile-btn">Edit Profile</button>
+                </div>
+                
+                <div class="user-description-container transition">
+                    <div class="desc-container">
+                        <div class="desc-heading">About Me</div>
+                        <div class="desc-content">{{org.description}}</div>
+                    </div>
+
+                    
+                </div>
+                
+                <form action="{{ url_for('orgprofile',lid=session['lid']) }}" class="profile-edit-form hidden" method="POST" novalidate enctype="multipart/form-data">
+                    <div class="row-form">
+                    <input class="update-profile-input" type="text" name="name" value="{{org.name or ''}}" id="" placeholder="Full Name">
+                    </div>
+                    <div class="row-form">
+                        <input class="update-profile-input" type="text" name="institute" value="{{org.institute or ''}}" id="" placeholder="Institute">
+                    </div>
+                    <div class="row-form">
+                        <input class="update-profile-input" type="text" value="{{org.phoneNo or ''}}" name="phoneNo" id="" placeholder="Contact Number">
+                    </div>
+                    <div class="row-form">
+                    <input class="update-profile-input" type="url" name="linkedin" value="{{org.linkedin or ''}}" id="" placeholder="LinkedIn Profile">
+                    </div>
+                    <div class="row-form">
+                    <textarea class="update-profile-input" name="description" id="" cols="10" rows="30" value="{{org.description or ''}}" placeholder="About me"></textarea>
+                    </div>
+                    <button type="submit" name="update" id="update" value="update" style="height: 100%;
+                    width: 100%;
+                    border: none;
+                    color: #fff;
+                    font-family: GothamB;
+                    font-size: 1rem;
+                    background: #13C0D7 ;
+                    padding: 10px 0px;
+                    border-radius: 5px;">Edit Profile</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Add hidden class for organisation -->
+        <!-- User certificate container -->
+        <div class="certificate-container transition">
+
+        </div>
+    </div>
+
+    <script src="../static//javascript/profilePage.js"></script>
+    
+</body>
+</html>

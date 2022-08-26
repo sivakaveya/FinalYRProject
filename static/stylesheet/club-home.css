@@ -1,0 +1,17 @@
+.container-fluid {
+	text-align: center;
+	justify-content: center;
+	align-items: center;
+	height: 500px;
+}
+
+.pull-right {
+	display: inline-block;
+	margin: 15px;
+	float: right;
+}
+
+small strong {
+	margin: 15px;
+	float: left;
+}

@@ -1,0 +1,15 @@
+@font-face {
+	font-family: 'gothambold1';
+<<<<<<< HEAD
+	src: url(../../assets/fonts/./gothambold1.eot) format('embedded-opentype'),
+	url(../../assets/fonts/./gothambold1.woff) format('woff'),
+	url(../../assets/fonts/./gothambold1.ttf) format('truetype');
+=======
+	src: url(../fonts/gothambold1.eot) format('embedded-opentype'),
+	url(../fonts/gothambold1.woff) format('woff'),
+	url(../fonts/gothambold1.ttf) format('truetype');
+>>>>>>> ce6022c8f095cb5b7ece00a010cf4570ce334a4d
+	font-weight: 400;
+	font-style: normal;
+	font-display: auto;
+}

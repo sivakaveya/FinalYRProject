@@ -1,0 +1,1092 @@
+/* Upcoming Events starts */
+
+html, body {
+    height: fit-content;
+}
+
+.gotham-medium {
+    font-family: GothamM;
+}
+
+.gotham-bold {
+    font-family: GothamB;
+}
+
+.close-registration-layout {
+    font-family: GothamM;
+    font-size: 0.65rem;
+    border: none;
+    background: transparent;
+    text-align: right;
+}
+
+.p-event-registrations {
+    align-items: flex-end;
+}
+
+.close {
+    color: #00446f;
+}
+
+.closed {
+    color: #960000;
+    cursor:default;
+}
+
+/* Upcoming Events ends */
+
+/* Previous Events starts */
+
+.orgDashboard-container {
+    width: 80%;
+}
+
+.container-2 {
+    height: fit-content;
+    margin-top: 5rem;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.previous-events-heading {
+    font-size: 1.7rem;
+    font-weight: 900;
+    font-family: GothamM;
+    color: #00446f;
+}
+
+.previous-events-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    width: 100%;
+}
+
+.previous-events-cards-container {
+    margin-top: 1.5rem;
+    width: 100%;
+    height: fit-content;
+}
+
+.first-row-events-card {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.3rem;
+}
+
+.p-event-card-bg-container {
+    width: 100%;
+    height: 20rem;
+
+    display: grid;
+    grid-gap: 1rem;
+}
+
+.p-event-card-bg {
+    flex: 0.5;
+    height: 100%;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    box-shadow: 0px 3px 6px #00000029;
+    border-radius: 5px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.p-event-content-container {
+    height: 80%;
+    width: 92%;
+
+    display: flex;
+}
+
+.p-event-card {
+    flex: 0.5;
+    height: 100%;
+    border: 1px solid grey;
+    border-radius: 5px;
+    
+    box-shadow: inset 0px -65px 99px #000000, 5px 4px 6px #0000003D;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.p-event-card:hover {
+    transition: ease-in 500ms;
+    background: hsla(0, 0%, 0%, 0.7);
+}
+
+.pe-content-container {
+    width: 80%;
+    height: 70%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.pe-event-heading, .pe-event-type {
+    /* font-weight: 600; */
+    font-size: 1.5rem;
+    font-family: GothamM;
+    color: #FFFFFF;
+}
+
+.pe-event-date {
+    color: #13c0d7;
+    font-family: GothamM;
+    font-size: 0.8rem;
+
+}
+
+.pe-event-domain {
+    align-self: end;
+    font-family: Montserrat;
+    color: white;
+    font-size: 0.7rem;
+}
+
+.p-event-righthalf {
+    height: 100%;
+    flex: 0.5;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.p-event-stats {
+    flex: 0.5;
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.p-event-participants, .p-event-registrations {
+    display: flex;
+    flex-direction: column;
+}
+
+.participants-number, .registrations-number {
+    text-align: right;
+}
+
+.participants-number {
+    font-size: 2.5rem;
+}
+
+.participants-text {
+    font-size: 1.5rem;
+}
+
+.registrations-number {
+    font-size: 1.3rem;
+}
+
+.registrations-text {
+    font-size: 0.8rem;
+}
+
+.p-event-btns-container {
+    flex: 0.25;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.p-event-btns-container button,  .p-event-btns-container form{
+    height: 1.8rem;
+    font-family: GothamM;
+    width: 90%;
+}
+
+.download-report-btn {
+    box-shadow: 0px 3px 6px #00000029;
+    border: 1px solid #00446F;
+    border-radius: 5px;
+    color: #00446f;
+    width: 100%;
+    transition: 300ms;
+}
+
+.download-report-btn:hover {
+    transition: 300ms;
+    background: #00446F;
+    color: white;
+}
+
+.download-btn-sm {
+    height: 13%;
+}
+
+.send-certificate-btn {
+    /* width: 7rem;  */
+    background: #00446F 0% 0% no-repeat padding-box;
+    box-shadow: 0px 3px 6px #00000029;
+    border-radius: 5px;
+    opacity: 0.67;
+    border: none;
+    color: #ffffff;
+    font-size: 0.8rem;
+    transition: 300ms;
+    margin-left: 18px;
+}
+
+.send-certificate-btn:hover {
+    opacity: 1;
+    transition: 300ms;
+}
+
+.p-event-card-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-gap: 1.5rem;
+
+    margin-top: 2rem;
+}
+
+.p-event-card-sm-container {
+    height: 16rem;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.p-event-sm-card {
+    width: 100%;
+    height: 13rem;
+    border: 1px solid grey;
+    border-radius: 5px;
+    
+    box-shadow: inset 0px -65px 99px #000000, 5px 4px 6px #0000003D;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.institute-card:hover {
+    transition: ease-in 500ms;
+    background: hsla(0, 0%, 0%, 0.7);
+}
+
+.ic-content-container {
+    width: 80%;
+    height: 80%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* Previous Events Ends */
+
+/* Popup container starts */ 
+
+.pop-up-container {
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: hsla(210, 3%, 24%, 0.53) 0% 0% no-repeat padding-box;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/* Event info container starts */
+.event-info-container {
+    height: 67%;
+    width: 75%;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    border-radius: 5px;
+    display: none;
+
+    justify-content: center;
+    align-items: center;
+}
+
+
+.event-popup-content-container {
+    height: 80%;
+    width: 80%;
+
+    display: flex;
+    justify-content: space-between;
+}
+
+.e-popup-lefthalf {
+    flex: 0.64;
+
+    display: flex;
+    justify-content: space-between;
+}
+
+.pe-card-container {
+    flex: 0.54;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.od-events-card {
+    width: 100%;
+    height: 82%;
+}
+
+.download-container {
+    flex: 0.55;
+
+    display: flex;
+    justify-content: space-between;
+}
+
+.download-container > button {
+    width: 47%;
+    font-size: 0.75rem;
+    font-family: GothamM;
+    background: none;
+    color: #00446f;
+}
+
+.download-poster {
+    border: 2px solid #00446F;
+    border-radius: 5px;
+    transition: 300ms;
+}
+
+.download-poster:hover {
+    background: #00446f;
+    color: #ffffff;
+    transition: 300ms;
+}
+
+.download-list {
+    border: none;
+    transition: 300ms;
+}
+
+.download-list:hover {
+    background: #13C0D7;
+    transition: 300ms;
+    color: white;
+    border-radius: 5px;
+}
+
+.pe-popup-stats {
+    flex: 0.415;
+
+    display: flex;
+    flex-direction: column;
+    grid-gap: 1rem;
+}
+
+.pe-popup-stats > * {
+    flex: 0.25;
+    transition: 200ms;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    font-family: GothamM;
+    color: #3b3d3f;
+    cursor: pointer;
+}
+
+.selected {
+    background: #00000015 0% 0% no-repeat padding-box;
+    border-radius: 5px;
+}
+
+.number-stats {
+    font-size: 2.8rem;
+}
+
+.text-stats {
+    font-size: 1rem;
+}
+
+.user-list-container {
+    flex: 0.33;
+    display: flex;
+
+    flex-direction: column;
+    
+    height: 94%;
+    overflow: scroll;
+}
+
+.single-user-container {
+    border-top: 1px solid #A5A5A560;
+    height: 8rem;
+    display: flex;
+    align-items: center;
+}
+
+.user-photo {
+    background: #C6C6C6;
+    height: 2.25rem;
+    width: 2.25rem;
+    border-radius: 50%;
+}
+
+.user-name {
+    font-weight: 300;
+    font-size: 0.95rem;
+    font-family: 'Montserrat';
+    letter-spacing: 0px;
+    color: #3B3D3F;
+    margin-left: 1.2rem;
+}
+
+/* Event info container ends */
+
+/* User info container starts */
+
+.user-info-popup-container {
+    /* height: 60%; */
+    height: 30rem;
+    width: 28rem;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    box-shadow: 0px 0px 20px #0000005F;
+    border-radius: 5px;
+
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+.info-popup-content-container {
+    height: 85%;
+    width: 88%;
+    grid-gap: 0.8rem;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.uipu-icon-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.icon {
+    font-size: 1.5rem;
+}
+
+.userpu-info-container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    width: 80%;
+
+    grid-gap: 0.5rem;
+}
+
+.pu-user-name {
+    font-size: 1.2rem;
+    font-family: GothamM;
+    text-align: center;
+}
+
+.user-institute {
+    font-family: GothamL;
+    color: #3B3D3F;
+}
+
+.user-image-container {
+    border: 1px solid lightgrey;
+    height: 7rem;
+    width: 7rem;
+    border-radius: 50%;
+}
+
+.user-description {
+    text-align: center;
+    font-size: 0.8rem;
+    font-family: GothamL;
+    color: #3B3D3F;
+}
+
+.user-social-container {
+    font-size: 1.2rem;
+    opacity: 0.5;
+    width: 30%;
+    height: 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.user-social-container > *:hover, .uipu-icon-container > *:hover {
+    cursor: pointer;
+}
+
+
+/* User info container ends */
+
+/* Download report popup starts */
+
+.report-popup-container {
+    height: 28rem;
+    width: 30rem;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    border-radius: 5px;
+
+    display: none;
+    justify-content: center;
+}
+
+.report-content-container {
+    width: 80%;
+    height: 88%;
+    margin-top: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.close-report-popup {
+    align-self: flex-end;
+}
+
+.report-event-heading {
+    font-family: Gotham;
+    font-size: 1.6rem;
+    color: #00446f;
+}
+
+.report-event-type {
+    font-family: GothamL;
+    font-size: 1.6rem;
+    color: #00446f;
+}
+
+.report-heading {
+    font-family: GothamB;
+    font-size: 1.1rem;
+    color: #00446f;
+}
+
+.report-summary {
+    background: #F5F5F5 0% 0% no-repeat padding-box;
+    border-radius: 5px;
+    border: none;
+    resize: none;
+    padding: 1rem;
+    font-family: GothamL;
+}
+
+.report-summary:focus {
+    outline: none;
+}
+
+.add-photo-container {
+    display: flex;
+    width: 37%;
+    justify-content: space-between;
+}
+
+.add-image-container, .added-photo-preview {
+    height: 3.5rem;
+    width: 3.5rem;
+    background: #F5F5F5 0% 0% no-repeat padding-box;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.add-report {
+    font-size: 1.5rem;
+}
+
+#report-image {
+    display: none;
+}
+
+.download-popup-report {
+    background: #13C0D7 0% 0% no-repeat padding-box;
+    border-radius: 5px;
+    border: none;
+    color: white;
+    height: 2rem;
+    width: 9rem;
+    align-self: end;
+}
+
+/* Download report popup ends */
+
+
+/* Popup container ends */
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+
+/* Medium devices (landscape tablets, 768px and up) */
+
+@media only screen and (max-width: 1024px) {
+    .orgDashboard-container {
+        width: 85%;
+    }
+
+    .reminder-card {
+        height: 6rem;
+    }
+
+    .reminder-heading {
+        font-size: 1.3rem;
+    }
+
+    .rc-heading {
+        font-size: 0.9rem;
+    }
+
+    .rc-status, .rc-time {
+        font-size: 0.6rem;
+    }
+
+    .reg-no {
+        font-size: 1rem;
+    }
+
+    .join-btn-container {
+        width: 4.5rem;
+        font-size: 80%;
+    }
+
+    .user-text {
+        font-size: 0.8rem;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .orgDashboard-container {
+        width: 88%;
+        margin-top: 2rem;
+    }
+
+    .container-1 {
+        grid-template-columns: 1fr 2fr;
+    }
+    
+    .reminder-cards-container { 
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .user-text {
+        font-size: 1rem;
+    }
+
+    .edit-text {
+        font-size: 0.8rem;
+    }
+
+    .reminder-card {
+        height: 5rem;
+    }
+
+    .reminder-heading {
+        font-size: 1rem;
+        letter-spacing: 0.05rem;
+    }
+
+    .rc-heading {
+        font-size: 0.8rem;
+    }
+
+    .rc-status {
+        font-size: 0.6rem;
+    }
+
+    .rc-time {
+        font-size: 0.6rem;
+    }
+
+    .reg-no {
+        font-size: 0.8rem;
+    }
+
+    .join-btn-container {
+        width: 4.5rem;
+        font-size: 75%;
+    }
+    
+    .p-event-card-bg-container {
+        display: grid;
+        grid-template-columns: 1fr;
+        height: 20rem;
+    }
+
+    .p-event-card-container {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .previous-events-heading {
+        font-size: 1.4rem;
+    }
+
+    .previous-events-cards-container {
+        margin-top: 1rem;
+    }
+
+    .first-row-events-card {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: 1rem;
+    }
+
+    .p-event-card-bg-container {
+        height: 17rem;
+    }
+
+    .p-event-content-container {
+        height: 90%;
+    }
+
+    .p-event-btns-container button {
+        width: 90%;
+        align-self: flex-end;
+        font-size: 70%;
+    }
+
+    .pe-event-heading {
+        font-size: 1rem;
+    }
+
+    .participants-number {
+        font-size: 1.5rem;
+    }
+
+    .participants-text {
+        font-size: 1.1rem;
+    }
+
+    .registrations-number {
+        font-size: 0.9rem;
+    }
+
+    .registrations-text {
+        align-self: flex-end;
+    }
+
+    .logout-text {
+        display: none;
+    }
+  
+}
+
+@media only screen and (max-width: 600px) {
+
+    .pop-up-container {
+        height: 100%;
+        width: 100%;
+    }
+
+    .orgDashboard-container {
+        width: 90%;
+        margin-top: 2rem;
+    }
+
+    /* .navbar-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        background: white;
+        z-index: 99;
+    } */
+
+    .reminder-heading-container > .view-more {
+        visibility: hidden;  
+        width: 0rem;
+    }
+
+    .container-1 {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .reminder-cards-container {
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    .reminder-card {
+        height: 7rem;
+        padding: 0.5rem 0;
+    }
+
+    .reminder-heading {
+        font-size: 1rem;
+        letter-spacing: 0.05rem;
+    }
+
+    .user-info-container {
+        min-width: 8rem;
+        padding: 0.2rem 0;
+        height: 9.5rem;
+    }
+
+    .user-info-container > a {
+        height: 100%;
+    }
+
+    .text-container {
+        height: 90%;
+    }
+
+    .user-text, .hello {
+        font-size: 1rem;
+    }
+
+    .edit-text {
+        font-size: 0.8rem;
+    }
+
+    .rc-heading {
+        font-size: 1rem;
+    }
+
+    .rc-status {
+        font-size: 0.5rem;
+    }
+
+    .rc-time {
+        font-size: 0.7rem;
+    }
+
+    .reg-no {
+        font-size: 0.7rem;
+    }
+
+    .join-btn-container {
+        font-size: 60%;
+        width: 4rem;
+    }
+
+    .p-event-card-bg-container {
+        height: 13.125rem;
+    }
+
+    .previous-events-heading {
+        font-size: 1.0625rem;
+    }
+
+    .view-more {
+        font-size: 0.6875rem;
+    }
+
+    .previous-events-cards-container {
+        margin: 0.5rem 0;
+    }
+
+    .p-event-card-bg-container {
+        margin: 0.5 0;
+    }
+
+    .pe-content-container {
+        height: 85%;
+        gap: 0.5rem;
+    }
+
+    .p-event-card {
+        border: none;
+    }
+
+    .p-event-content-container {
+        height: 100%;
+        width: 100%;
+        justify-content: space-around;
+        display: flex;
+    }
+
+    .p-event-righthalf {
+        height: 95%;    
+        flex: 0.45;
+    }
+
+    .participants-number {
+        font-size: 1.9rem;
+    }
+
+    .participants-text {
+        font-size: 1.3rem;
+    }
+
+    .pe-event-heading {
+        font-size: 1.1875rem;
+    }
+
+    .event-description {
+        visibility: hidden;
+    }
+
+    .pe-event-date, .pe-event-domain {
+        font-size: 0.6875rem;
+    }
+
+    .p-event-stats {
+        flex: 0.55;
+    }
+
+    .p-event-card {
+        flex: 0.45;
+    }
+
+    .p-event-btns-container {
+        flex: 0.35;
+        align-items: flex-end;
+    }
+
+    .download-report-btn {
+        font-size: 0.7rem;
+    }
+
+    .send-certificate-btn {
+        font-size: 0.8125rem;
+    }
+
+    .p-event-btns-container > button {
+        width: 90%;
+    }
+
+    .registrations-number, .registrations-text {
+        font-size: 0.725rem;
+    }
+
+    .first-row-events-card {
+        display: flex;
+        flex-direction: column;
+        gap: 1.65rem;
+    }
+
+    .p-event-registrations {
+        align-items: flex-end;
+    }
+
+    .pop-up-container {
+        /* display: flex !important; */
+        top: 80px;
+    }
+
+    .event-info-container {
+        height: 100%;
+        width: 100%;
+    }
+
+    .event-popup-content-container {
+        flex-direction: column;
+        height: 90%;
+        width: 100%;
+        align-items: center;
+    }
+
+    .e-popup-lefthalf {
+        flex-direction: column;
+        align-items: center;
+        display: flex;
+    }
+
+    .e-popup-lefthalf > * {
+        margin: 1rem 0;
+    }
+
+    .pe-popup-stats {
+        display: flex;
+        flex-direction: row;
+        min-height: 5.375rem;
+        justify-content: center;
+        width: 80%;
+    }
+
+    .pe-popup-stats > * {
+        width: 100%;
+    }
+
+    .download-container {
+        width: 80%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 1rem;
+    }
+
+    .download-container > button {
+        border : solid #00446F 1px;
+        border-radius: 5px;
+        height: 2.2rem;
+    }
+
+    .pe-card-container {
+        align-items: center;
+    }
+
+    .od-events-card {
+        min-height: 13.5rem;
+        width: 80%;
+    }
+
+    .download-poster {
+        display: none;
+    }
+
+    .number-stats {
+        font-size: 1.5rem;
+    }
+
+    .text-stats {
+        font-size: 1.125rem;
+    }
+
+    .user-list-container {
+        width: 80%;
+        height: fit-content;
+        background: red;
+        overflow-y: scroll;
+    }
+
+    .report-popup-container {
+        display: flex;
+        height: 100%;
+        width: 100%;
+    }  
+
+    .close-report-popup {
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 450px) {
+    .user-text, .hello {
+        font-size: 0.8rem;
+    }
+
+    .nv-links {
+        width: 10rem;
+    }
+
+    .user-info-container {
+        height: 8rem;
+    }
+
+    .p-event-card-container {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+}

@@ -1,0 +1,350 @@
+/* 
+input[type="range" i]::-ms-fill-lower {
+    background: #777;
+    border-radius: 10px;
+}
+input[type="range" i]::-ms-fill-upper {
+    background: #ddd;
+    border-radius: 10px;
+}
+input[type="range" i]::-ms-thumb {
+    border: none;
+    height: 16px;
+    width: 16px;
+    border-radius: 50%;
+    background: goldenrod;
+}
+input[type="range" i]:focus::-ms-fill-lower {
+    background: #888;
+}
+input[type="range" i]:focus::-ms-fill-upper {
+    background: #ccc;
+}  */
+
+
+:root {
+    --placeholder-size: 0.6rem;
+}
+
+.check{
+    width: 23rem;
+}
+
+
+.pop-up-background-container {
+    position: fixed;
+    z-index: 10;
+    overflow-x: hidden;
+    height: 100%;
+    width: 100%;
+    background-color: rgb(0,0,0); /* Black fallback color */
+    background-color: rgba(0,0,0, 0.5); /* Black w/opacity */
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+.unsplash-main-container {
+    height: 40rem;
+    width: 60rem;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    border-radius: 5px;
+    z-index: 12;
+    display: flex;
+    flex-direction: column;
+}
+
+.content-container {
+    width: 80%;
+    /* background: Red; */
+    height: 85%;
+}
+
+.us-container1 {
+    flex: 0.2;
+    border-bottom: solid 1px #00000029;
+    width: 100%;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container1-content-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.content-left-half {
+    width: 19rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: space-between;
+    height: 70%;
+}
+
+.content-row1 {
+    display: flex;
+    align-items: center;
+    font-size: 1.25rem;
+    font-family: GothamB;
+    color: #00446f;
+}  
+
+.background-text-popup {
+    margin-left: 0.8rem;
+}
+
+.input-box-container {
+    height: 100%;
+    width: 80%;
+}
+
+#search-unsplash {
+    height: 100%;
+    width: 100%;
+    background: #00000010 0% 0% no-repeat padding-box;
+    box-shadow: 0px 3px 6px #00000029;
+    border-radius: 5px;
+    border: none;
+    padding: 0.4rem;
+    font-family: GothamM;
+}
+
+#search-unsplash:active {
+    border: none;
+}
+
+.content-right-half {
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+}
+
+.powered-by-text {
+    font-size: 0.5625rem;
+    font-family: GothamM;
+    color: #13C0D7;
+}
+
+.unsplash-logo {
+    height: 2.5rem;
+    width: 5rem;
+}
+
+.us-container2 {
+    flex: 0.65;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: scroll;
+}
+
+.container2-content-container {
+    overflow: scroll;
+}
+
+.unsplash-image-container {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(3, 1fr);
+    scroll-behavior: smooth;
+}
+
+.unsplash-image {
+    cursor: pointer;
+    height: 14rem;
+    width: 15rem;
+}
+
+.unsplash-image > img{
+    width: 100%;
+    height: 100%;
+}
+
+.us-container3 {
+    flex: 0.15;
+    box-shadow: 0px -2px 6px #00000029;
+    border-radius: 0px 0px 5px 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container3-content-container {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+}
+
+.upload-btn {
+    width: 7.5rem;
+    height: 1.75rem;
+    border: 1px solid #00446F;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.8125rem;
+    font-family: GothamB;
+    color: #00446f;
+    background: transparent;
+    margin-right: 2rem;
+}
+
+label {
+    cursor: pointer;
+}
+
+.done-btn-container {
+    background: #13C0D7 0% 0% no-repeat padding-box;
+    border-radius: 5px;
+    height: 1.75rem;
+    width: 4rem;
+    border-bottom: 5px;
+    font-size: 0.8125rem;
+    font-family: GothamB;
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 1024px) {
+    .unsplash-main-container {
+        height: 35rem;
+        width: 44rem;
+    }
+
+    .unsplash-image-container {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0.4rem;
+    }
+
+    .unsplash-image {
+        height: 7rem;
+        width: 11rem;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .unsplash-main-container {
+        width: 35rem;
+    }
+
+    .content-row1 {
+        font-size: 1rem;
+    }
+
+    .unsplash-image-container {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0.3rem;
+    }
+
+    .unsplash-image {
+        height: 7rem;
+        width: 9rem;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .unsplash-main-container {
+        height: 30rem;
+        width: 28rem;
+    }
+
+    .content-row1 {
+        font-size: 1rem;
+    }
+
+    .input-box-container {
+        width: 60%;
+        height: 80%;
+    }
+
+    .unsplash-image-container {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.4rem;
+    }
+
+    .unsplash-image {
+        height: 7rem;
+        width: 10rem;
+    }
+}
+
+@media screen and (max-width: 425px) {
+    .unsplash-main-container {
+        height: 35rem;
+        width: 20rem;
+    }
+
+    .content-row1 {
+        font-size: 0.6rem;
+    }
+
+    .powered-by-text {
+        font-size: 0.4rem;
+    }
+
+    .unsplash-logo {
+        width: 3rem;
+        height: 1.5rem;
+    }
+
+    .input-box-container {
+        width: 60%;
+        height: 60%;
+    } 
+
+    #search-unsplash::-webkit-input-placeholder {
+        font-family: 'myFont', Arial, Helvetica, sans-serif;
+        font-size: var(--placeholder-size)
+    }
+      
+    #search-unsplash:-ms-input-placeholder {
+        font-family: 'myFont', Arial, Helvetica, sans-serif;
+        font-size: var(--placeholder-size);
+    }
+      
+    #search-unsplash:-moz-placeholder {
+        font-family: 'myFont', Arial, Helvetica, sans-serif;
+        font-size: var(--placeholder-size)
+    }
+      
+    #search-unsplash::-moz-placeholder {
+        font-family: 'myFont', Arial, Helvetica, sans-serif;
+        font-size: var(--placeholder-size)
+    }
+
+    .upload-btn {
+        width: 5.5rem;
+        height: 1.75rem;
+        font-size: 0.5rem;
+    } 
+    
+    .done-btn-container {
+        height: 1.75rem;
+        width: 4rem;
+        font-size: 0.5rem;
+    }
+    
+    .unsplash-image {
+        cursor: pointer;
+        height: 14rem;
+        width: 17rem;
+    }
+
+    .unsplash-image-container {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.2rem;
+    }
+
+    .unsplash-image {
+        height: 5rem;
+        width: 7rem;
+    }
+}

@@ -1,0 +1,562 @@
+* { margin: 0; padding: 0; box-sizing: border-box;}
+
+@font-face {
+    font-family: Gotham;
+    src: url("../Gotham-Font/Gotham-Black.otf") format("opentype");
+}
+@font-face {
+    font-family: GothamB;
+    src: url("../Gotham-Font/Gotham\ Bold.otf") format("TrueType");
+}
+@font-face {
+    font-family: GothamM;
+    src: url("../Gotham-Font/Gotham\ Medium.otf") format("TrueType");
+}
+
+@font-face {
+    font-family: GothamL;
+    src: url('../Gotham-Font/Gotham-Light.otf') format('opentype');
+}
+
+@font-face {
+    font-family: GothamBook;
+    src: url('../Gotham-Font/Gotham\ Book\ Font.otf') format('opentype');
+}
+
+button, .event-card:hover, .view-more, .edit-text {
+    cursor: pointer;
+}
+
+.main-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Navbar starts */
+.navbar-container {
+    display: flex;
+    justify-content: space-between;
+    width: min(97%, 90rem);
+}
+
+.nv-logo {
+    height: 5rem;
+    display: flex;
+}
+
+.nv-logo > img {
+    width: 12rem;
+}
+
+.nv-links {
+    width: 15rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* flex: 0.22; */
+}
+
+.search-icon, .notification-icon, .logout-btn {
+    font-size: 1.25rem;
+    font-family: GothamM;
+}
+
+.logout-btn img{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.add-event {
+    width: 6rem;
+    height: 2.7rem;
+}
+
+.nv-back-container {
+    display: none;
+}
+
+.add-event-btn {
+    background: #13C0D7 0% 0% no-repeat padding-box;
+    border-radius: 5px;
+    border: none;
+    height: 100%;
+    width: 100%;
+    font-family: Gotham;
+    color: #ffffff;
+}
+
+.notification-icon {
+    display: flex;
+    flex-direction: column;
+}
+
+.notification-box-container {
+<<<<<<< HEAD
+    height: fit-content;
+=======
+    height: 20.75rem;
+>>>>>>> ce6022c8f095cb5b7ece00a010cf4570ce334a4d
+    width: 23rem;
+    background: #F8F8F8 0% 0% no-repeat padding-box;
+    box-shadow: 0px 3px 6px #00000029;
+    opacity: 1;
+    position: absolute;
+    top: 70px;
+    left: calc(100vw - 33rem);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 20;
+<<<<<<< HEAD
+=======
+    overflow-y: auto;
+>>>>>>> ce6022c8f095cb5b7ece00a010cf4570ce334a4d
+}
+
+.notification-box-content-container {
+    height: 90%;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem 0;
+}
+
+.notification-cards-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.notification-card-container {
+    width: 100%;
+<<<<<<< HEAD
+    height: 3.5rem;
+=======
+    height: fit-content;
+>>>>>>> ce6022c8f095cb5b7ece00a010cf4570ce334a4d
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    box-shadow: 0px 3px 6px #00000029;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.clear-current-notification-btn {
+    font-size: 0.8rem;
+    align-self: flex-end;
+    cursor: pointer;
+}
+
+.notification-content-container {
+    height: 100%;
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+}
+
+.notification-message {
+    font-size: 0.8125rem;
+    font-family: sans-serif;
+}
+
+.notification-org-name {
+    font-size: 0.6875rem;
+    font-family: GothamB;
+}
+
+.notification-time {
+    align-self: end;
+    font-size: 0.5625rem;
+    font-family: GothamBook;
+    color: #b0b0b0;
+}
+
+.clear-all-notification {
+    align-self: end;
+    font-size: 0.7rem;
+    font-family: GothamBook;
+    color: #b0b0b0;
+    cursor: pointer;
+}
+
+/* Navbar ends */
+
+/* Reminders container start */
+
+.container-1 {
+    height: fit-content;
+
+    margin-top: 3rem;
+
+    display: grid;
+    /* justify-content: space-between; */
+    grid-template-columns: 1fr 3fr;
+    gap: 1.3rem;
+}
+
+.user-info-container {
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    box-shadow: 0px 3px 6px #00000029;
+    border-radius: 5px;
+    max-height: 9.75rem;
+    flex: 0.2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 10rem;
+}
+
+.user-info-container > a {
+    height: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.user-info-container:hover {
+    color: white;
+    background: #13C0D7;
+}
+
+.text-container {
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+    align-items: center;
+    height: 80%;
+}
+
+.user-text {
+    font-size: 0.9rem;
+    font-family: GothamB;
+    font-weight: 400;
+    align-self: flex-start;
+}
+ .hello{
+    font-size: 40px;
+    font-weight: 600;
+
+}
+
+.edit-text {
+    color: #00446F;
+    align-self: end;
+    justify-self: end;
+}
+
+.reminder-container {
+    flex: 0.78;
+    display: flex;
+    flex-direction: column;
+}
+
+.reminder-heading-container {
+    display: flex;
+    align-items: center;
+    flex: 0.3;
+
+    justify-content: space-between;
+}
+
+.view-more {
+    font-size: 0.8rem;
+    color: #00446F;
+    font-family: GothamM;
+    font-weight: 700;
+}
+
+.reminder-heading {
+    color: #13C0D7;
+    font-size: 1.7rem;
+    font-weight: 900;
+    letter-spacing: 0.1rem;
+    font-family: GothamM;
+}
+
+.reminder-cards-container {
+    flex: 0.8;
+    height: fit-content;
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 1rem;
+}
+
+.ongoing-rc {
+    background: hsla(203, 100%, 22%, 0.16) 0% 0% no-repeat padding-box !important;
+    box-shadow: 0px 3px 6px #000000A6;
+}
+
+.closed-rc {
+    background: #FF000014 0% 0% no-repeat padding-box !important;
+    box-shadow: 0px 3px 6px #00000029 !important;
+    border-radius: 5px;
+}
+
+.reminder-card {
+    height: 7.6rem;
+    border-radius: 5px;
+    background: #F8F8F8 0% 0% no-repeat padding-box;
+    box-shadow: 0px 3px 6px #00000029;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.rc-text-container {
+    height: 80%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.rc-content-container {
+    width: 93%;
+    height: 88%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.rc-heading {
+    font-size: 1.2rem;
+    font-family: GothamM;
+    color: #3b3d3f;
+}
+
+.rc-status {
+    color: #00446f;
+    font-weight: 500;
+    font-size: 0.75rem;
+    font-family: GothamM;
+}
+
+.rc-time {
+    color: #c973d6;
+    font-size: 0.8rem;
+}
+
+.righthalf-rc-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 80%;
+    width: 60%;
+}
+
+.registration-no {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.registration-text {
+    font-family: GothamM;
+    font-size: 0.65rem;
+    color: #3B3D3F;
+}
+
+.reg-no {
+    font-family: Gotham;
+    font-size: 1.2rem;
+
+}
+
+.join-btn-container {
+    align-self: end;
+    width: 7rem; 
+    height: 1.7rem;
+    background: #00446F 0% 0% no-repeat padding-box;
+    box-shadow: 0px 3px 6px #00000029;
+    border-radius: 5px;
+    opacity: 0.67;
+    border: none;
+    color: #ffffff;
+    font-size: 0.8rem;
+    transition: ease-out 500ms;
+}
+
+.join-btn-container:hover, .view-ticket-btn:hover  {
+    opacity: 1;
+    background: #00446f;
+    transition: ease-out 500ms;
+    transform: scale(1.08);
+    color: white;
+}
+
+<<<<<<< HEAD
+=======
+.rc-right {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    align-items: end;
+}
+
+.text-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+
+.days-container {
+    color: #3B3D3F;
+}
+
+.days-text {
+    font-family: GothamL;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+.days-heading {
+    text-align: end;
+    font-family: GothamM;
+    font-size: 1.3rem;
+}
+
+>>>>>>> ce6022c8f095cb5b7ece00a010cf4570ce334a4d
+.view-ticket-btn {
+    box-shadow: 0px 3px 6px #00000029;
+    border: 1px solid #00446F;
+    border-radius: 5px;
+    width: 7rem; 
+    height: 1.7rem;
+    color: #00446F;
+    transition: ease-out 500ms;
+    align-self: end;
+    font-weight: 700;
+}
+
+/* Reminder container end */
+
+/* Hoverable events card starts */
+
+.events-card {
+    /* Height width in respective css */
+    border: 1px solid grey;
+    border-radius: 5px;
+    box-shadow: inset 0px -65px 99px #000000, 5px 4px 6px #0000003D;
+    background-color: #363333cc;
+    background-image: url("../images/drone.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-clip: padding-box ;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.download-container {
+    flex: 0.4;
+}
+
+.event-description {
+    visibility: hidden;
+    font-size: 0.87rem;
+    font-family: 'Gotham', 'Montserrat';
+    color: white;
+}
+
+.ec-content-container {
+    width: 80%;
+    height: 80%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.ec-content-container > a {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.events-card:hover .event-description {
+    visibility: visible;
+}
+
+.events-card:hover {
+    background: black !important;
+    transition: ease-in 800ms;
+}
+.tint:hover{
+    opacity: 1;
+    transition: ease-out 600ms;
+}
+
+.ec-event-heading, .ec-event-type {
+    /* font-weight: 600; */
+    font-size: 1.5rem;
+    font-family: 'Gotham', 'Montserrat';
+    color: #FFFFFF;
+}
+
+.ec-event-date {
+    color: #13c0d7;
+    font-family: 'Gotham', "Montserrat";
+    font-size: 0.8rem;
+
+}
+
+.ec-event-domain {
+    align-self: end;
+    font-family: 'Montserrat';
+    color: white;
+}
+
+
+/* Events card ends */
+
+<<<<<<< HEAD
+=======
+@media screen and (max-width: 768px) {
+    .logout-text {
+        display: none;
+    }
+}
+
+>>>>>>> ce6022c8f095cb5b7ece00a010cf4570ce334a4d
+@media screen and (max-width: 425px) {
+    .navbar-container{
+        width: 92%;
+        align-items: center;
+    }
+
+    .nv-links {
+        width: 7rem;
+    }
+
+    .nv-logo {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 9rem !important;
+    }
+
+    .nv-logo > img {
+        width: 10rem;
+    }
+
+    .nv-icons {
+        font-size: 1.1rem;
+    }
+
+    .logout-text {
+        display: none;
+    }
+
+    .notification-box-container {
+        left: 1rem;
+        width: 21rem;
+    }
+}
