@@ -89,14 +89,24 @@ class Registeration(db.Model):
     rid=db.Column(db.String(200))
     lid=db.Column(db.String(100), db.ForeignKey("login.lid"), nullable=False)
     eid=db.Column(db.String(200), db.ForeignKey("event.eid"), nullable=False)
+
 ###########TEMPORARY COMMENTED DONT DELETE###########
-# class Certificate(db.Model):
-#     id=db.Column(db.Integer, primary_key=True)
-#     lid=db.Column(db.String(100), db.ForeignKey("login.lid"), nullable=False)
-#     certificate_link=db.Column(db.String(200))
-#     eid=db.Column(db.String(100), db.ForeignKey("event.eid"), nullable=False)
+class Certificate(db.Model):
+    id=db.Column(db.Integer, primary_key=True)
+    cid=db.Column(db.String(200))
+    lid=db.Column(db.String(100))
+    eid=db.Column(db.String(100))
 ######################################################
 
+class Ticket(db.Model):
+    id=db.Column(db.Integer, primary_key=True)
+    tid=db.Column(db.String(200))
+    lid=db.Column(db.String(100))
+    eid=db.Column(db.String(100))
+    def __init__(self, tid,lid,eid):
+        self.tid = tid
+        self.lid=lid
+        self.eid=eid
 class Notification(db.Model):
     id=db.Column(db.Integer, primary_key=True)
     lid=db.Column(db.String(100))
@@ -528,7 +538,14 @@ def eventPage(eid):
             db.session.commit()
             return redirect(url_for('clientDashboard'))
         rid=createIdRegisteration(session['lid'],eid)
+        print(rid)
         new_entry=Registeration(rid=rid,lid=session['lid'],eid=eid)
+        db.session.add(new_entry)
+        db.session.commit()
+        time.sleep(1)
+        tid=createIdTicket(session['lid'],eid)
+        print(tid)
+        new_entry=Ticket(tid=tid,lid=session['lid'],eid=eid)
         db.session.add(new_entry)
         db.session.commit()
     lst=[]
@@ -1038,6 +1055,14 @@ def createIdLogin(role,email):
 def createIdEvent(name):
     ts = time.time()
     id=session['lid']+name+str(ts)
+    return id
+
+
+#Function to generate ticket id
+def createIdTicket(lid,eid):
+    ts = time.time()
+    id=lid+eid+str(ts)
+    print(id)
     return id
 
 #Function to generate file to save backgroud images of event
