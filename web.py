@@ -113,6 +113,11 @@ class Notification(db.Model):
     eid=db.Column(db.String(200))
     message=db.Column(db.String(200))
 
+class Follower(db.Model):
+    id=db.Column(db.Integer, primary_key=True)
+    uid=db.Column(db.String(100))
+    oid=db.Column(db.String(100))
+
 class Feedback(db.Model):
     id=db.Column(db.Integer, primary_key=True)
     lid = db.Column(db.String(100))
@@ -324,6 +329,7 @@ def clientDashboard():
             Notification.query.filter_by(eid=eid).delete()
             db.session.commit()
         e=upcomingEvents()
+        foll=upcomingEventsFollowing(lid=session['lid'])
         l=registeredupcomingEvents(lid=session['lid'])
         n=showNotifications(lid=session['lid'])
         exevents=knowafest()
@@ -338,9 +344,8 @@ def clientDashboard():
         global courses
         courses=[]
         if len(courses)==0:
-            
             courses.extend(getCourses(session['lid']))
-        return render_template('clientDashboard.html',events=e,international_events=international_events[:12], registered=l[1], ongoing=l[0], notifications=n, exevents=exevents[:12], courses=courses[:-1])
+        return render_template('clientDashboard.html',events=e,foll=foll,international_events=international_events[:12], registered=l[1], ongoing=l[0], notifications=n, exevents=exevents[:12], courses=courses[:-1])
     else:
         return redirect(url_for('home'))
 
@@ -377,7 +382,7 @@ def organisationDashboard():
         ######## This code is supposed to work when organizer clicks on send feedback for a particular event########
         ######## Do not delete #######
 
-        send_feedback_link('o_sivakaveyaSample1660464326.58539')
+        # send_feedback_link('o_sivakaveyaSample1660464326.58539')
 
         ######## END OF TEST CODE #########
         return render_template('orgDashboard.html', ongoing=events['ongoing'], reg_open=events['reg_open'], reg_close=events['reg_close'], completed=events['completed'], completed_sentcert=events['completed_sentcert'], notifications=notifications)
@@ -786,10 +791,18 @@ def viewOrgProfile(lid):
         description=request.form.get('description')
         report.send_mail('phoenixatsih@gmail.com','uhyhrxcaadzjhomi', 'phoenixatsih@gmail.com',session['lid'], lid, description)
         return redirect(url_for('clientDashboard'))
+    if request.method=='POST' and request.form.get('follow')=='follow':
+        new_entry=Follower(uid=session['lid'],oid=lid)
+        db.session.add(new_entry)
+        db.session.commit()
+    if request.method=='POST' and request.form.get('unfollow')=='unfollow':
+        Follower.query.filter(Follower.uid == session['lid'] and Follower.oid == lid).delete()
+        db.session.commit()
     org=Orgdata.query.filter_by(lid=lid).first()
     events=upcomingEventsOrg(lid)
     notifications=showNotifications(session['lid'])
-    return render_template('viewOrgProfile.html',org=org,events=events, notifications=notifications)
+    following = db.session.query(Follower.id).filter_by(uid=session['lid'], oid=lid).first() is not None
+    return render_template('viewOrgProfile.html',org=org,events=events, notifications=notifications,following=following)
 
 # Fetch the Checkout Session to display the JSON result on the success page
 @app.route('/checkout-session', methods=['GET'])
@@ -1113,7 +1126,6 @@ def upcomingEvents():
         b = datetime.utcnow()
         delta = b - a
         if delta.days<=0:
-
             if db.session.query(ClientInterest.id).filter_by(interest=event.domain).first() is not None:
                 e.insert(0,event)
             else:
@@ -1286,7 +1298,28 @@ def getCourses(lid):
         courses.extend(scrapallcourse('Machine Learning'))
     return courses
 
-
+#Function to get upcoming events of organisations you follow
+def upcomingEventsFollowing(lid):
+    events = Event.query.all()
+    foll = []
+    following= [r[0] for r in db.session.query(Follower.oid).filter_by(uid = lid).all()]
+    # print(following)
+    for event in events:
+        try:
+            date_format = "%Y-%m-%d"
+            a = datetime.strptime(event.regLastDate[0:10], date_format)
+            b = datetime.utcnow()
+            delta = b - a
+            if delta.days<=0:
+                print(event.name)
+                if event.lid in following:
+                    if db.session.query(ClientInterest.id).filter_by(interest=event.domain).first() is not None:
+                        foll.insert(0,event)
+                    else:
+                        foll.append(event)
+        except:
+            continue
+    return foll
 
 #Function to send cancel event mails
 def send_cancel_email(eid,name,reason):

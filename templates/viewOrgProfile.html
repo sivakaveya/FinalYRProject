@@ -68,6 +68,20 @@
                     <div class="edit-profile-container">
                         <button class="edit-profile-btn" style="background-color: rgb(158, 7, 7);">Report  <i class="fa fa-flag" aria-hidden="true"></i></button>
                     </div>
+                    <br>
+                    {% if following %}
+                    <form action="{{ url_for('viewOrgProfile',lid=org.lid) }}" method="POST" novalidate enctype="multipart/form-data">
+                    <div class="edit-profile-container">
+                        <button type="submit" name="unfollow" value="unfollow" class="edit-profile-btn" style="background-color: rgb(61, 113, 150)" title="Click to Unfollow">Following</button>
+                    </div>
+                    </form>
+                    {% else %}
+                    <form action="{{ url_for('viewOrgProfile',lid=org.lid) }}" method="POST" novalidate enctype="multipart/form-data">
+                        <div class="edit-profile-container">
+                            <button type="submit" name="follow" value="follow" class="edit-profile-btn" >Follow</button>
+                        </div>
+                        </form>
+                    {% endif %}
                     <div class="desc-container">
                         <div class="desc-heading">About Organisation</div>
                         <div class="desc-content">{{org.description}}</div>

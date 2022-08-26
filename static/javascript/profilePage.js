@@ -33,3 +33,15 @@ editProfileBtn.addEventListener('click', () => {
         hide([profileForm]);
     }
 })
+
+followingBtn.addEventListener('click', () => {
+    if(!isEditing) {
+        isEditing = !isEditing;
+        hide([ profileForm ]);
+        open([followers]);
+    } else {
+        isEditing = !isEditing;
+        // open([ userInfoCard, userDescription, certificateContainer ])
+        hide([followers]);
+    }
+})

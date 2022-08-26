@@ -156,6 +156,36 @@
         <div class="clientDashboard-container container-3">
             <div class="institute-content-container">
                 <div class="institute-text-container">
+                    <div class="institute-name">Organisations you Follow</div>
+                    <div class="view-more institute">View More</div>
+                </div>
+            </div>
+
+            <div class="institute-cards-container">
+
+                <!-- Single card -->
+                {% for event in foll %}
+                <a href="{{url_for('eventPage',eid=event.eid)}}" style="text-decoration: none">
+                <div class="institute-card" style="background: url('../static//images/events/{{event.eventImg}}'); background-size: cover; background-repeat: no-repeat;">
+                    <div class="ic-content-container">
+                        <img class="rounded-circle img-fluid"
+                                    style="object-fit: cover; border-radius: 0px;width: 50px;height: 50px;"
+                                    src="./static//images/profile/{{event.orgImg}}">
+                        <!-- <div class="org-logo" style="background: url('../static//images/profile/{{event.orgImg}}');  border: 50%; width: 2rem; height: 2rem;"></div> -->
+                        <div class="ec-event-heading">{{event.name}}</span></div>
+                        <div class="ec-event-date">{{event.date}}</div>
+                        <div class="ec-event-domain">{{event.domain}}</div>
+                    </div>
+                </div>
+                </a>
+                {% endfor %}
+
+            </div>
+        </div>
+
+        <div class="clientDashboard-container container-3">
+            <div class="institute-content-container">
+                <div class="institute-text-container">
                     <div class="institute-name">External Events</div>
 
                     <div class="view-more institute"  id="loadMore">View More</div>
