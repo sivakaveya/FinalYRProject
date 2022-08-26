@@ -1,0 +1,503 @@
+﻿<html>
+
+<head>
+    <style>
+        body {
+            width: 230mm;
+            height: 100%;
+            margin: 0 auto;
+            padding: 0;
+            font-size: 12pt;
+            background: rgb(204, 204, 204);
+        }
+
+        * {
+            box-sizing: border-box;
+            -moz-box-sizing: border-box;
+        }
+
+        .main-page {
+            width: 210mm;
+            min-height: 297mm;
+            margin: 10mm auto;
+            background: white;
+            box-shadow: 0 0 0.5cm rgba(0, 0, 0, 0.5);
+        }
+
+        .sub-page {
+            padding: 1cm;
+            min-height: 297mm;
+        }
+
+        @page {
+            size: A4;
+            margin: 0;
+        }
+
+        @media print {
+
+            html,
+            body {
+                width: 210mm;
+                height: 297mm;
+            }
+
+            .main-page {
+                margin: 0;
+                border: initial;
+                border-radius: initial;
+                width: initial;
+                min-height: initial;
+                box-shadow: initial;
+                background: initial;
+                page-break-after: always;
+            }
+        }
+
+        table {
+            table-layout: fixed;
+            border-collapse: collapse;
+            border: 1px solid;
+            vertical-align: middle;
+        }
+
+        td,
+        tr {
+            border-collapse: collapse;
+            border: 1px solid;
+            vertical-align: middle;
+            height: auto;
+            word-wrap: break-word;
+
+        }
+
+        td {
+            width: "25%"
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main-page" id="main_page">
+        <div class="sub-page">
+            <div class="heading" style="display: grid; grid-template-columns:1fr 1.7fr">
+                <img src="../static/images/profile/{{event.orgImg}}" alt="" style="width:80px; height:80px">
+
+                <h1 style="justify-self: start">Event Report</h1>
+            </div>
+            <br />
+            <br />
+            <center>
+                <table width="80%">
+                    <tr>
+                        <td colspan="2">
+                            <center>
+                                <h2 align='center'>{{org.name}}</h2>
+                            </center>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <center>
+                                <h3 align='center'>{{org.institute}}</h3>
+                            </center>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h4>Event name</h4>
+                        </td>
+                        <td>
+                            {{event.name}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h4>Event Domain</h4>
+                        </td>
+                        <td>
+                            {{event.domain}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h4>Date of the Event</h4>
+                        </td>
+                        <td>
+                            {{event.date}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h4>Number of Registrations</h4>
+                        </td>
+                        <td>
+                            {{registered}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h4>Number of Participants</h4>
+                        </td>
+                        <td>
+                            28
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h4>Event Details</h4>
+                        </td>
+                        <td>
+                            {{summary}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h4>Event Poster</h4>
+                        </td>
+                        <td>
+                            <img src="../static/images//events/{{event.eventImg}}"
+                                style="width:200px; height:150px; object-fit: cover;" alt="">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h4>Event Speakers</h4>
+                        </td>
+                        <td>
+                            <ul>
+                                {% for i in range(event.noOfSpeakers) %}
+                                {% if i==0 %}
+                                <li>{{event.speaker1Name}}</li>
+                                {% elif i==1 %}
+                                <li>{{event.speaker2Name}}</li>
+                                {% else %}
+                                <li>{{event.speaker3Name}}</li>
+                                {% endif %}
+                                {% endfor %}
+                            </ul>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h4>Event Snapshots</h4>
+                        </td>
+                        <td>
+                            images
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h4>Event Feedback</h4>
+                        </td>
+                        <td>
+                            <p>Rate your experience at the event</p>
+                            <div>
+                                <canvas id="myChart1"></canvas>
+                            </div>
+                            <br>
+
+                            <p>How well was the event organised?</p>
+                            <div>
+                                <canvas id="myChart2"></canvas>
+                            </div>
+                            <br>
+
+                            <p>How likely are you to attend our future events?</p>
+                            <div>
+                                <canvas id="myChart3"></canvas>
+                            </div>
+                            <br>
+
+                            <p>Overall how will you rate our event?</p>
+                            <div>
+                                <canvas id="myChart4"></canvas>
+                            </div>
+                            <br>
+
+                            <p>How useful was the event?</p>
+                            <div>
+                                <canvas id="myChart5"></canvas>
+                            </div>
+                            <br>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h4>Event Survey</h4>
+                        </td>
+                        <td>
+                            
+                            <p>Gender Ratio</p>
+                            <div>
+                                <canvas id="myChartGender"></canvas>
+                            </div>
+                            <br>
+
+                       
+                            
+                            <p>Institute Ratio</p>
+                            <div>
+                                <canvas id="myChartInstitute"></canvas>
+                            </div>
+                            <br>
+
+                        </td>
+
+                    </tr>
+                </table>
+            </center>
+        </div>
+        <div class="row" style="margin-right: 0px;margin-left: 0px;">
+            <div class="col-3 offset-7 col-md-2 offset-md-8" style="padding-right: 0px;padding-left: 0px;">
+                <button onclick="window.print()" class="btn btn-primary" style="cursor: pointer; margin-top: 2vh;background: #12ccef;border-style: none;font-family: sans-serif;font-size: 25px;height: 45px;width: 100%;">Print</button></div>
+        </div>
+       
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        const data1 = {
+            labels: [
+                '1',
+                '2',
+                '3',
+                '4',
+                '5'
+            ],
+            datasets: [{
+                label: 'Q1',
+                data: {{ Q1 }},
+            backgroundColor: [
+                '#FF6B6B',
+                '#FFD93D',
+                '#6BCB77',
+                '#4D96FF',
+                '#FFBED8'
+            ],
+            hoverOffset: 4
+            }]
+        };
+
+        const config1 = {
+            type: 'doughnut',
+            data: data1,
+        };
+    </script>
+    <script>
+        const myChart1 = new Chart(
+            document.getElementById('myChart1'),
+            config1
+        );
+    </script>
+
+
+    <script>
+        const data2 = {
+            labels: [
+                '1',
+                '2',
+                '3',
+                '4',
+                '5'
+            ],
+            datasets: [{
+                label: 'Q2',
+                data: {{ Q2 }},
+            backgroundColor: [
+                '#FF6B6B',
+                '#FFD93D',
+                '#6BCB77',
+                '#4D96FF',
+                '#FFBED8'
+            ],
+            hoverOffset: 4
+        }]
+    };
+
+        const config2 = {
+            type: 'doughnut',
+            data: data2,
+        };
+    </script>
+    <script>
+        const myChart2 = new Chart(
+            document.getElementById('myChart2'),
+            config2
+        );
+    </script>
+
+
+<script>
+    const data3 = {
+        labels: [
+            '1',
+            '2',
+            '3',
+            '4',
+            '5'
+        ],
+        datasets: [{
+            label: 'Q3',
+            data: {{ Q3 }},
+        backgroundColor: [
+            '#FF6B6B',
+            '#FFD93D',
+            '#6BCB77',
+            '#4D96FF',
+            '#FFBED8'
+        ],
+        hoverOffset: 4
+        }]
+    };
+
+    const config3 = {
+        type: 'doughnut',
+        data: data3,
+    };
+</script>
+<script>
+    const myChart3 = new Chart(
+        document.getElementById('myChart3'),
+        config3
+    );
+</script>
+
+
+<script>
+    const data4 = {
+        labels: [
+            '1',
+            '2',
+            '3',
+            '4',
+            '5'
+        ],
+        datasets: [{
+            label: 'Q4',
+            data: {{ Q4 }},
+        backgroundColor: [
+            '#FF6B6B',
+            '#FFD93D',
+            '#6BCB77',
+            '#4D96FF',
+            '#FFBED8'
+        ],
+        hoverOffset: 4
+    }]
+};
+
+    const config4 = {
+        type: 'doughnut',
+        data: data4,
+    };
+</script>
+<script>
+    const myChart4 = new Chart(
+        document.getElementById('myChart4'),
+        config4
+    );
+<<<<<<< HEAD
+</script>
+<script>
+=======
+</script><script>
+>>>>>>> ce6022c8f095cb5b7ece00a010cf4570ce334a4d
+    const data5 = {
+        labels: [
+            '1',
+            '2',
+            '3',
+            '4',
+            '5'
+        ],
+        datasets: [{
+            label: 'Q5',
+            data: {{ Q5 }},
+        backgroundColor: [
+            '#FF6B6B',
+            '#FFD93D',
+            '#6BCB77',
+            '#4D96FF',
+            '#FFBED8'
+        ],
+        hoverOffset: 4
+        }]
+    };
+
+    const config5 = {
+        type: 'doughnut',
+        data: data5,
+    };
+</script>
+<script>
+    const myChart5 = new Chart(
+        document.getElementById('myChart5'),
+        config5
+    );
+</script>
+
+<script>
+    const dataGender = {
+        labels: {{ glabels|tojson }},
+        datasets: [{
+            labels: 'Gender',
+            data: {{ gvalues }},
+        backgroundColor: [
+            '#F675A8',
+            '#9ADCFF'
+        ],
+        hoverOffset: 4
+        }]
+    };
+
+    const configGender = {
+        type: 'doughnut',
+        data: dataGender,
+    };
+</script>
+<script>
+    const myChartGender = new Chart(
+        document.getElementById('myChartGender'),
+        configGender
+    );
+</script>
+
+<script>
+    const dataInstitute = {
+        labels: {{ ilabels|tojson }},
+        datasets: [{
+            labels: 'Institute',
+            data: {{ ivalues }},
+        backgroundColor: [
+            '#CD009A',
+            '#FF0100',
+            '#FF6702',
+            '#F99D5A',
+            '#FC9A00',
+            '#97009A',
+            '#67019A',
+            '#66CC01',
+            '#009E00',
+            '#00CCCE',
+            '#0065CE'
+        ],
+        hoverOffset: 4
+        }]
+    };
+
+    const configInstitute = {
+        type: 'doughnut',
+        data: dataInstitute,
+    };
+</script>
+<script>
+    const myChartInstitute = new Chart(
+        document.getElementById('myChartInstitute'),
+        configInstitute
+    );
+</script>
+</body>
+
+</html>

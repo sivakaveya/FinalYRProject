@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verify Otp</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container-fluid" style="width: 100vw; height: 100vh; overflow: hidden;">
+        <div class="row d-flex" style="width: 100vw; height: 100vh">
+            <!-- Left half container -->
+            <div class="col grow-1 h-100 w-xs-100 w-md-50 d-flex justify-content-center align-items-center">
+                <!-- Content Container -->
+                <div class="d-flex flex-column justify-content-around align-items-center" style="height: 45%; width: 70%">
+                    
+                    <!-- Verify text -->
+                    <div class="fs-1 font-montserrat">Verify your Email</div>
+
+                    <!-- Grey line -->
+                    <div class="greyline" style="width: 80%; height: 2px; background: lightgrey"></div>
+
+                    <!-- OTP INput -->
+                   <form class="w-75 h-50 d-flex flex-column justify-content-around align-items-center" form action="/otp" name="otp" id="otp" method="POST" >
+                        <div class="d-flex flex-column w-100">
+                            <div class="form-group w-100">
+                                <input type="text" class="form-control" name="otp" id="" aria-describedby="helpId" placeholder="">
+
+                            </div>
+        
+                            <!-- OTP Text -->
+                            <div class="font-montserrat w-20" style="color: #8C8E90; font-size: 11px">One time password has been sent to your Email Id</div>
+                        </div>
+
+                        <button type="submit" style="background-color: #00446F;" name="OTP Verify" id="" class="w-100 btn btn-primary">Vefify OTP</button>
+
+                   </form>
+                </div>
+            </div>
+            
+            <!-- Right half container  -->
+            <div class="col d-none w-md-50 d-md-flex h-100">
+                <img src="../static//images/Log.jpg" class="h-100 img-fluid">
+            </div>
+        </div>
+    </div>
+    <script>
+        {% if verified==2 %}
+        window.alert("wrong otp");
+        {% endif %}
+    </script>
+</body>
+</html>

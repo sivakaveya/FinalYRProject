@@ -1,0 +1,74 @@
+h1 {
+	text-align: center;
+	padding: 30px 30px 10px 30px;
+	font-weight: normal;
+}
+
+form {
+	padding: 15px;
+}
+
+.inputWithIcon{
+	position: relative;
+}
+
+.inputWithIcon i {
+	position: absolute;
+	margin-left: -30px;
+	top: 8px;
+}
+
+#other {
+	padding: 20px;
+}
+
+#container {
+	width: 500px;
+	padding: 15px;
+	margin: 30px auto;
+	background: white;
+	border-radius: 20px;
+	/*border: 2px solid black;*/
+	box-shadow: 1px 1px 20px rgba(0, 0, 0, 0.5);
+}
+
+.hide-show {
+	float: right;
+}
+
+.fas, .far {
+	padding: 5px;
+}
+
+.forgot {
+	float: right;
+	margin-bottom: 20px;
+}
+
+.options {
+	text-align: center;
+	padding: 10px;
+}
+
+.fab.fa-facebook {
+	color: rgb(0, 0, 256);
+}
+
+.fab.fa-google {
+	color: rgb(256, 0, 0);
+}
+
+.btn.btn-primary.btn-block {
+	background: #3494E6;  /* fallback for old browsers */
+	background: -webkit-linear-gradient(to right, #EC6EAD, #3494E6);  /* Chrome 10-25, Safari 5.1-6 */
+	background: linear-gradient(to right, #EC6EAD, #3494E6); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+	border: 0px;
+	border-radius: 5rem;
+	padding-bottom: 10px;
+	text-transform: uppercase;
+}
+
+input {
+	border: none!important;
+  	border-bottom: 1px solid #000!important;
+}

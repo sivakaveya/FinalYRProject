@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Feedback_Final</title>
+    <link rel="stylesheet" href="../../static//bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../static//css/gothambold1.css">
+    <link rel="stylesheet" href="../../static//css/GothamBook.css">
+    <link rel="stylesheet" href="../../static//css/GothamLight.css">
+    <link rel="stylesheet" href="../../static//css/MontserratBlack.css">
+    <link rel="stylesheet" href="../../static//css/MontserratRegular.css">
+    <link rel="stylesheet" href="../../static//css/Contact-Form-Clean.css">
+    <link rel="stylesheet" href="../../static//css/styles.css">
+    <link rel="stylesheet" href="../../static//css/Event_Page.css">
+    <link rel="stylesheet" href="../../static//stylesheet/feedback.css">
+</head>
+
+<body style="width: 100%;">
+    <div class="container-fluid flex-row header align-items-center justify-content-between">
+        
+        <div style="font-family: GothamBook"> <img class="" style="height:100px ;width: 164px;  margin-right: 5vw;" src="../../static//img/Logo.png" alt="">
+            <a href="" style="font-family: GothamBook; color: black; text-decoration:none;" > Dashboard</a>
+        </div>
+        <div class="flex-row"><img style="height:20px ;width: 20px;" src="../../static//img/icons8-search.png"  alt="">
+        <img style="height:20px ;width: 20px; margin-left: 2vw;" src="../../static//img/bell.png" alt="">
+        <img style="height: 20px; width: 85px; margin-left: 2vw" src="../../static//img/logout_withoutbg.png" alt=""></div>
+    </div>
+    <div class="container" style="margin-bottom: 12vh;">
+        <div class="row justify-content-center d-sm-flex" style="margin-top: 2vh;padding: 0px;margin-right: 0px;margin-left: 0px;">
+            <div class="col-8 col-md-3" style="padding-right: 0px;padding-left: 0px;margin-bottom: 2vh;border-radius: 7px;margin-top: 1vh;box-shadow: 0px 3px 6px rgba(33,37,41,0.16);">
+                <div style="border-radius: 0px;padding: 2px;height: 157px;padding-left: 12px;border-color: rgb(33,37,41);margin-left: 0;padding-right: 12px;">
+                    <h1 style="margin-bottom: 0px;margin-left: 2vw;font-family: gothambold1;font-size: 35px;margin-top: 2vh;">Hello, </h1><small style="font-size: 22px;margin-left: 2vw;font-family: gothambold1;">{{user.name}}</small>
+                    <p style="text-align: right;font-size: 11px;color: #00446F;margin-right: 2vw;margin-top: 4vh;font-family: gothambold1;margin-bottom: 0px;">Go to Dashboard</p>
+                </div>
+            </div>
+            <div class="col-8 align-self-end col-md-5 overflow-hidden" style="padding-right: 12px;padding-left: 12px;height: 157px;border-radius: 5px;margin-bottom: 2vh;margin-top: 1vh;padding-top: 2px;">
+                <h1 style="font-size: 23px;color: #12ccef;margin-top: 2vh;font-family: gothambold1;margin-left: 2vw;">Feedback survey for {{event.name}} on {{event.domain}}</h1><img class="img-fluid img-fluid align-items-end" src="../../static//images/events/{{event.eventImg}}" style="border-radius: 5px;height: 111px;width: 100%; object-fit: cover;">
+                <div style="margin-left: 2vw;"></div>
+            </div>
+        </div>
+        <form action="{{ url_for('feedback',lid=user.lid, eid=event.eid) }}" class="profile-edit-form hidden" method="POST" novalidate enctype="multipart/form-data">
+        <div class="row justify-content-center" style="margin-right: 0px;margin-left: 0px;">
+            <div class="col-8"
+                style="box-shadow: 0px 0px 6px rgba(0,0,0,0.1);border-radius: 5px;margin-bottom: 2vh;height: 121px;margin-top: 2vh;">
+                <p
+                    style="text-align: left;font-size: 15px;color: #00446F;margin-top: 3vh;font-family: GothamBook;margin-left: 2vw;font-weight: bold;">
+                    Rate your experience at the event</p>
+                <div class="d-flex justify-content-md-evenly mx-md-auto" style="margin-left: 0px;margin-top: 2vh;">
+                    <label for="super-sad">
+                        <input type="radio" name="Q1" class="super-sad" id="super-sad" value="1" />
+                        <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="currentColor"
+                            class="bi bi-1-circle" viewBox="0 0 16 16">
+                            <path
+                                d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8Zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0ZM9.283 4.002V12H7.971V5.338h-.065L6.072 6.656V5.385l1.899-1.383h1.312Z" />
+                        </svg>
+                    </label>
+        
+                    <label for="sad">
+                        <input type="radio" name="Q1" class="sad" id="sad" value="2" checked />
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-2-circle" viewBox="0 0 16 16">
+                            <path
+                                d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8Zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0ZM6.646 6.24v.07H5.375v-.064c0-1.213.879-2.402 2.637-2.402 1.582 0 2.613.949 2.613 2.215 0 1.002-.6 1.667-1.287 2.43l-.096.107-1.974 2.22v.077h3.498V12H5.422v-.832l2.97-3.293c.434-.475.903-1.008.903-1.705 0-.744-.557-1.236-1.313-1.236-.843 0-1.336.615-1.336 1.306Z" />
+                        </svg>
+                    </label>
+        
+                    <label for="neutral">
+                        <input type="radio" name="Q1" class="neutral" id="neutral" value="3" />
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-3-circle" viewBox="0 0 16 16">
+                            <path
+                                d="M7.918 8.414h-.879V7.342h.838c.78 0 1.348-.522 1.342-1.237 0-.709-.563-1.195-1.348-1.195-.79 0-1.312.498-1.348 1.055H5.275c.036-1.137.95-2.115 2.625-2.121 1.594-.012 2.608.885 2.637 2.062.023 1.137-.885 1.776-1.482 1.875v.07c.703.07 1.71.64 1.734 1.917.024 1.459-1.277 2.396-2.93 2.396-1.705 0-2.707-.967-2.754-2.144H6.33c.059.597.68 1.06 1.541 1.066.973.006 1.6-.563 1.588-1.354-.006-.779-.621-1.318-1.541-1.318Z" />
+                            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0ZM1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8Z" />
+                        </svg>
+                    </label>
+        
+                    <label for="happy">
+                        <input type="radio" name="Q1" class="happy" id="happy" value="4" />
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-4-circle" viewBox="0 0 16 16">
+                            <path
+                                d="M7.519 5.057c.22-.352.439-.703.657-1.055h1.933v5.332h1.008v1.107H10.11V12H8.85v-1.559H4.978V9.322c.77-1.427 1.656-2.847 2.542-4.265ZM6.225 9.281v.053H8.85V5.063h-.065c-.867 1.33-1.787 2.806-2.56 4.218Z" />
+                            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0ZM1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8Z" />
+                        </svg>
+                    </label>
+        
+                    <label for="super-happy">
+                        <input type="radio" name="Q1" class="super-happy" id="super-happy" value="5" />
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-5-circle" viewBox="0 0 16 16">
+                            <path
+                                d="M1 8a7 7 0 1 1 14 0A7 7 0 0 1 1 8Zm15 0A8 8 0 1 0 0 8a8 8 0 0 0 16 0Zm-8.006 4.158c-1.57 0-2.654-.902-2.719-2.115h1.237c.14.72.832 1.031 1.529 1.031.791 0 1.57-.597 1.57-1.681 0-.967-.732-1.57-1.582-1.57-.767 0-1.242.45-1.435.808H5.445L5.791 4h4.705v1.103H6.875l-.193 2.343h.064c.17-.258.715-.68 1.611-.68 1.383 0 2.561.944 2.561 2.585 0 1.687-1.184 2.806-2.924 2.806Z" />
+                        </svg>
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center" style="margin-right: 0px;margin-left: 0px;">
+            <div class="col-8"
+                style="box-shadow: 0px 0px 6px rgba(0,0,0,0.1);border-radius: 5px;margin-bottom: 2vh;height: 121px;margin-top: 2vh;">
+                <p
+                    style="text-align: left;font-size: 15px;color: #00446F;margin-top: 3vh;font-family: GothamBook;margin-left: 2vw;font-weight: bold;">
+                    <strong>How well was the event organised?</strong><br></p>
+                <div class="d-flex justify-content-md-evenly mx-md-auto" style="margin-left: 0px;margin-top: 2vh;">
+                    
+                    <label for="super-sad2">
+                        <input type="radio" name="Q2" class="super-sad" id="super-sad2" value="1" />
+                        <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="currentColor"
+                            class="bi bi-1-circle" viewBox="0 0 16 16">
+                            <path
+                                d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8Zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0ZM9.283 4.002V12H7.971V5.338h-.065L6.072 6.656V5.385l1.899-1.383h1.312Z" />
+                        </svg>
+                    </label>
+        
+                    <label for="sad2">
+                        <input type="radio" name="Q2" class="sad" id="sad2" value="2" checked />
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-2-circle" viewBox="0 0 16 16">
+                            <path
+                                d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8Zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0ZM6.646 6.24v.07H5.375v-.064c0-1.213.879-2.402 2.637-2.402 1.582 0 2.613.949 2.613 2.215 0 1.002-.6 1.667-1.287 2.43l-.096.107-1.974 2.22v.077h3.498V12H5.422v-.832l2.97-3.293c.434-.475.903-1.008.903-1.705 0-.744-.557-1.236-1.313-1.236-.843 0-1.336.615-1.336 1.306Z" />
+                        </svg>
+                    </label>
+        
+                    <label for="neutral2">
+                        <input type="radio" name="Q2" class="neutral" id="neutral2" value="3" />
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-3-circle" viewBox="0 0 16 16">
+                            <path
+                                d="M7.918 8.414h-.879V7.342h.838c.78 0 1.348-.522 1.342-1.237 0-.709-.563-1.195-1.348-1.195-.79 0-1.312.498-1.348 1.055H5.275c.036-1.137.95-2.115 2.625-2.121 1.594-.012 2.608.885 2.637 2.062.023 1.137-.885 1.776-1.482 1.875v.07c.703.07 1.71.64 1.734 1.917.024 1.459-1.277 2.396-2.93 2.396-1.705 0-2.707-.967-2.754-2.144H6.33c.059.597.68 1.06 1.541 1.066.973.006 1.6-.563 1.588-1.354-.006-.779-.621-1.318-1.541-1.318Z" />
+                            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0ZM1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8Z" />
+                        </svg>
+                    </label>
+        
+                    <label for="happy2">
+                        <input type="radio" name="Q2" class="happy" id="happy2" value="4" />
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-4-circle" viewBox="0 0 16 16">
+                            <path
+                                d="M7.519 5.057c.22-.352.439-.703.657-1.055h1.933v5.332h1.008v1.107H10.11V12H8.85v-1.559H4.978V9.322c.77-1.427 1.656-2.847 2.542-4.265ZM6.225 9.281v.053H8.85V5.063h-.065c-.867 1.33-1.787 2.806-2.56 4.218Z" />
+                            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0ZM1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8Z" />
+                        </svg>
+                    </label>
+        
+                    <label for="super-happy2">
+                        <input type="radio" name="Q2" class="super-happy" id="super-happy2" value="5" />
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-5-circle" viewBox="0 0 16 16">
+                            <path
+                                d="M1 8a7 7 0 1 1 14 0A7 7 0 0 1 1 8Zm15 0A8 8 0 1 0 0 8a8 8 0 0 0 16 0Zm-8.006 4.158c-1.57 0-2.654-.902-2.719-2.115h1.237c.14.72.832 1.031 1.529 1.031.791 0 1.57-.597 1.57-1.681 0-.967-.732-1.57-1.582-1.57-.767 0-1.242.45-1.435.808H5.445L5.791 4h4.705v1.103H6.875l-.193 2.343h.064c.17-.258.715-.68 1.611-.68 1.383 0 2.561.944 2.561 2.585 0 1.687-1.184 2.806-2.924 2.806Z" />
+                        </svg>
+                    </label>
+                   
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center" style="margin-right: 0px;margin-left: 0px;">
+            <div class="col-8"
+                style="box-shadow: 0px 0px 6px rgba(0,0,0,0.1);border-radius: 5px;margin-bottom: 2vh;height: 121px;margin-top: 2vh;">
+                <p
+                    style="text-align: left;font-size: 15px;color: #00446F;margin-top: 3vh;font-family: GothamBook;margin-left: 2vw;font-weight: bold;">
+                    <strong>How likely are you to attend our future events?</strong><br></p>
+                <div class="d-flex justify-content-md-evenly mx-md-auto" style="margin-left: 0px;margin-top: 2vh;">
+
+                    <label for="super-sad3">
+                        <input type="radio" name="Q3" class="super-sad" id="super-sad3" value="1" />
+                        <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="currentColor"
+                            class="bi bi-1-circle" viewBox="0 0 16 16">
+                            <path
+                                d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8Zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0ZM9.283 4.002V12H7.971V5.338h-.065L6.072 6.656V5.385l1.899-1.383h1.312Z" />
+                        </svg>
+                    </label>
+        
+                    <label for="sad3">
+                        <input type="radio" name="Q3" class="sad" id="sad3" value="2" checked />
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-2-circle" viewBox="0 0 16 16">
+                            <path
+                                d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8Zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0ZM6.646 6.24v.07H5.375v-.064c0-1.213.879-2.402 2.637-2.402 1.582 0 2.613.949 2.613 2.215 0 1.002-.6 1.667-1.287 2.43l-.096.107-1.974 2.22v.077h3.498V12H5.422v-.832l2.97-3.293c.434-.475.903-1.008.903-1.705 0-.744-.557-1.236-1.313-1.236-.843 0-1.336.615-1.336 1.306Z" />
+                        </svg>
+                    </label>
+        
+                    <label for="neutral3">
+                        <input type="radio" name="Q3" class="neutral" id="neutral3" value="3" />
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-3-circle" viewBox="0 0 16 16">
+                            <path
+                                d="M7.918 8.414h-.879V7.342h.838c.78 0 1.348-.522 1.342-1.237 0-.709-.563-1.195-1.348-1.195-.79 0-1.312.498-1.348 1.055H5.275c.036-1.137.95-2.115 2.625-2.121 1.594-.012 2.608.885 2.637 2.062.023 1.137-.885 1.776-1.482 1.875v.07c.703.07 1.71.64 1.734 1.917.024 1.459-1.277 2.396-2.93 2.396-1.705 0-2.707-.967-2.754-2.144H6.33c.059.597.68 1.06 1.541 1.066.973.006 1.6-.563 1.588-1.354-.006-.779-.621-1.318-1.541-1.318Z" />
+                            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0ZM1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8Z" />
+                        </svg>
+                    </label>
+        
+                    <label for="happy3">
+                        <input type="radio" name="Q3" class="happy" id="happy3" value="4" />
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-4-circle" viewBox="0 0 16 16">
+                            <path
+                                d="M7.519 5.057c.22-.352.439-.703.657-1.055h1.933v5.332h1.008v1.107H10.11V12H8.85v-1.559H4.978V9.322c.77-1.427 1.656-2.847 2.542-4.265ZM6.225 9.281v.053H8.85V5.063h-.065c-.867 1.33-1.787 2.806-2.56 4.218Z" />
+                            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0ZM1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8Z" />
+                        </svg>
+                    </label>
+        
+                    <label for="super-happy3">
+                        <input type="radio" name="Q3" class="super-happy" id="super-happy3" value="5" />
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-5-circle" viewBox="0 0 16 16">
+                            <path
+                                d="M1 8a7 7 0 1 1 14 0A7 7 0 0 1 1 8Zm15 0A8 8 0 1 0 0 8a8 8 0 0 0 16 0Zm-8.006 4.158c-1.57 0-2.654-.902-2.719-2.115h1.237c.14.72.832 1.031 1.529 1.031.791 0 1.57-.597 1.57-1.681 0-.967-.732-1.57-1.582-1.57-.767 0-1.242.45-1.435.808H5.445L5.791 4h4.705v1.103H6.875l-.193 2.343h.064c.17-.258.715-.68 1.611-.68 1.383 0 2.561.944 2.561 2.585 0 1.687-1.184 2.806-2.924 2.806Z" />
+                        </svg>
+                    </label>
+
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center" style="margin-right: 0px;margin-left: 0px;">
+            <div class="col-8"
+                style="box-shadow: 0px 0px 6px rgba(0,0,0,0.1);border-radius: 5px;margin-bottom: 2vh;height: 121px;margin-top: 2vh;">
+                <p
+                    style="text-align: left;font-size: 15px;color: #00446F;margin-top: 3vh;font-family: GothamBook;margin-left: 2vw;font-weight: bold;">
+                    <strong>Overall how will you rate our event?</strong><br></p>
+                <div class="d-flex justify-content-md-evenly mx-md-auto" style="margin-left: 0px;margin-top: 2vh;">
+                    <label for="super-sad4">
+                        <input type="radio" name="Q4" class="super-sad" id="super-sad4" value="1" />
+                        <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="currentColor"
+                            class="bi bi-1-circle" viewBox="0 0 16 16">
+                            <path
+                                d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8Zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0ZM9.283 4.002V12H7.971V5.338h-.065L6.072 6.656V5.385l1.899-1.383h1.312Z" />
+                        </svg>
+                    </label>
+        
+                    <label for="sad4">
+                        <input type="radio" name="Q4" class="sad" id="sad4" value="2" checked />
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-2-circle" viewBox="0 0 16 16">
+                            <path
+                                d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8Zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0ZM6.646 6.24v.07H5.375v-.064c0-1.213.879-2.402 2.637-2.402 1.582 0 2.613.949 2.613 2.215 0 1.002-.6 1.667-1.287 2.43l-.096.107-1.974 2.22v.077h3.498V12H5.422v-.832l2.97-3.293c.434-.475.903-1.008.903-1.705 0-.744-.557-1.236-1.313-1.236-.843 0-1.336.615-1.336 1.306Z" />
+                        </svg>
+                    </label>
+        
+                    <label for="neutral4">
+                        <input type="radio" name="Q4" class="neutral" id="neutral4" value="3" />
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-3-circle" viewBox="0 0 16 16">
+                            <path
+                                d="M7.918 8.414h-.879V7.342h.838c.78 0 1.348-.522 1.342-1.237 0-.709-.563-1.195-1.348-1.195-.79 0-1.312.498-1.348 1.055H5.275c.036-1.137.95-2.115 2.625-2.121 1.594-.012 2.608.885 2.637 2.062.023 1.137-.885 1.776-1.482 1.875v.07c.703.07 1.71.64 1.734 1.917.024 1.459-1.277 2.396-2.93 2.396-1.705 0-2.707-.967-2.754-2.144H6.33c.059.597.68 1.06 1.541 1.066.973.006 1.6-.563 1.588-1.354-.006-.779-.621-1.318-1.541-1.318Z" />
+                            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0ZM1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8Z" />
+                        </svg>
+                    </label>
+        
+                    <label for="happy4">
+                        <input type="radio" name="Q4" class="happy" id="happy4" value="4" />
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-4-circle" viewBox="0 0 16 16">
+                            <path
+                                d="M7.519 5.057c.22-.352.439-.703.657-1.055h1.933v5.332h1.008v1.107H10.11V12H8.85v-1.559H4.978V9.322c.77-1.427 1.656-2.847 2.542-4.265ZM6.225 9.281v.053H8.85V5.063h-.065c-.867 1.33-1.787 2.806-2.56 4.218Z" />
+                            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0ZM1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8Z" />
+                        </svg>
+                    </label>
+        
+                    <label for="super-happy4">
+                        <input type="radio" name="Q4" class="super-happy" id="super-happy4" value="5" />
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-5-circle" viewBox="0 0 16 16">
+                            <path
+                                d="M1 8a7 7 0 1 1 14 0A7 7 0 0 1 1 8Zm15 0A8 8 0 1 0 0 8a8 8 0 0 0 16 0Zm-8.006 4.158c-1.57 0-2.654-.902-2.719-2.115h1.237c.14.72.832 1.031 1.529 1.031.791 0 1.57-.597 1.57-1.681 0-.967-.732-1.57-1.582-1.57-.767 0-1.242.45-1.435.808H5.445L5.791 4h4.705v1.103H6.875l-.193 2.343h.064c.17-.258.715-.68 1.611-.68 1.383 0 2.561.944 2.561 2.585 0 1.687-1.184 2.806-2.924 2.806Z" />
+                        </svg>
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center" style="margin-right: 0px;margin-left: 0px;">
+            <div class="col-8" style="box-shadow: 0px 0px 6px rgba(0,0,0,0.1);border-radius: 5px;margin-bottom: 2vh;height: 121px;margin-top: 2vh;">
+                <p style="text-align: left;font-size: 15px;color: #00446F;margin-top: 3vh;font-family: GothamBook;margin-left: 2vw;font-weight: bold;"><strong>How useful was the event?</strong><br></p>
+                <div class="d-flex justify-content-md-evenly mx-md-auto" style="margin-left: 0px;margin-top: 2vh;">
+                    <label for="super-sad5">
+                        <input type="radio" name="Q5" class="super-sad" id="super-sad5" value="1" />
+                        <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="currentColor"
+                            class="bi bi-1-circle" viewBox="0 0 16 16">
+                            <path
+                                d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8Zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0ZM9.283 4.002V12H7.971V5.338h-.065L6.072 6.656V5.385l1.899-1.383h1.312Z" />
+                        </svg>
+                    </label>
+        
+                    <label for="sad5">
+                        <input type="radio" name="Q5" class="sad" id="sad5" value="2" checked />
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-2-circle" viewBox="0 0 16 16">
+                            <path
+                                d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8Zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0ZM6.646 6.24v.07H5.375v-.064c0-1.213.879-2.402 2.637-2.402 1.582 0 2.613.949 2.613 2.215 0 1.002-.6 1.667-1.287 2.43l-.096.107-1.974 2.22v.077h3.498V12H5.422v-.832l2.97-3.293c.434-.475.903-1.008.903-1.705 0-.744-.557-1.236-1.313-1.236-.843 0-1.336.615-1.336 1.306Z" />
+                        </svg>
+                    </label>
+        
+                    <label for="neutral5">
+                        <input type="radio" name="Q5" class="neutral" id="neutral5" value="3" />
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-3-circle" viewBox="0 0 16 16">
+                            <path
+                                d="M7.918 8.414h-.879V7.342h.838c.78 0 1.348-.522 1.342-1.237 0-.709-.563-1.195-1.348-1.195-.79 0-1.312.498-1.348 1.055H5.275c.036-1.137.95-2.115 2.625-2.121 1.594-.012 2.608.885 2.637 2.062.023 1.137-.885 1.776-1.482 1.875v.07c.703.07 1.71.64 1.734 1.917.024 1.459-1.277 2.396-2.93 2.396-1.705 0-2.707-.967-2.754-2.144H6.33c.059.597.68 1.06 1.541 1.066.973.006 1.6-.563 1.588-1.354-.006-.779-.621-1.318-1.541-1.318Z" />
+                            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0ZM1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8Z" />
+                        </svg>
+                    </label>
+        
+                    <label for="happy5">
+                        <input type="radio" name="Q5" class="happy" id="happy5" value="4" />
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-4-circle" viewBox="0 0 16 16">
+                            <path
+                                d="M7.519 5.057c.22-.352.439-.703.657-1.055h1.933v5.332h1.008v1.107H10.11V12H8.85v-1.559H4.978V9.322c.77-1.427 1.656-2.847 2.542-4.265ZM6.225 9.281v.053H8.85V5.063h-.065c-.867 1.33-1.787 2.806-2.56 4.218Z" />
+                            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0ZM1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8Z" />
+                        </svg>
+                    </label>
+        
+                    <label for="super-happy5">
+                        <input type="radio" name="Q5" class="super-happy" id="super-happy5" value="5" />
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-5-circle" viewBox="0 0 16 16">
+                            <path
+                                d="M1 8a7 7 0 1 1 14 0A7 7 0 0 1 1 8Zm15 0A8 8 0 1 0 0 8a8 8 0 0 0 16 0Zm-8.006 4.158c-1.57 0-2.654-.902-2.719-2.115h1.237c.14.72.832 1.031 1.529 1.031.791 0 1.57-.597 1.57-1.681 0-.967-.732-1.57-1.582-1.57-.767 0-1.242.45-1.435.808H5.445L5.791 4h4.705v1.103H6.875l-.193 2.343h.064c.17-.258.715-.68 1.611-.68 1.383 0 2.561.944 2.561 2.585 0 1.687-1.184 2.806-2.924 2.806Z" />
+                        </svg>
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center" style="margin-right: 0px;margin-left: 0px;">
+            <div class="col-8 overflow-hidden" style="box-shadow: 0px 0px 6px rgba(0,0,0,0.1);border-radius: 5px;margin-bottom: 2vh;height: 157px;margin-top: 2vh;">
+                <p style="text-align: left;font-size: 15px;color: #00446F;margin-top: 3vh;font-family: GothamBook;margin-left: 2vw;font-weight: bold;"><strong>Any suggestions? (optional)</strong><br></p>
+                <div class="d-flex justify-content-center overflow-hidden" style="margin-bottom: 2vh;"><textarea name="Q6" class="mx-auto" style="background: rgba(229,229,229,0.32);width: 45vw;height: 10vh;border-style: none;padding-left: 12px;padding-right: 12px;padding-top: 6px;padding-bottom: 6px;margin-bottom: 6vh;" placeholder="Enter here"></textarea></div>
+            </div>
+        </div>
+        <div class="row" style="margin-right: 0px;margin-left: 0px;">
+            <div class="col-3 offset-7 col-md-2 offset-md-8" style="padding-right: 0px;padding-left: 0px;"><button class="btn btn-primary" type="submit" style="margin-top: 2vh;background: #12ccef;border-style: none;font-family: gothambold1;font-size: 15px;height: 45px;width: 100%;">Submit</button></div>
+        </div>
+    </div>
+</form>
+    <script src="../../static//bootstrap/js/bootstrap.min.js"></script>
+</body>
+
+</html>

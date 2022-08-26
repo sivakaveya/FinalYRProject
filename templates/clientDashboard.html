@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Client Dashboard</title>
+
+    <link rel="stylesheet" href="../static//stylesheet/commonCode.css">
+    <link rel="stylesheet" href="../static//stylesheet/clientDashboard.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css" integrity="sha512-10/jx2EXwxxWqCLX/hHth/vu2KY3jCF70dCQB8TSgNjbCVAC/8vai53GfMDrO2Emgwccf2pJqxct9ehpzG+MTw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <div class="main-container">
+        <div class="navbar-container">
+            <div class="nv-logo">
+                <div class="nv-back-container nv-icons"><i class="fa-solid fa-arrow-left"></i></div>
+                <img src="../static//images/Logo.png" alt="">
+            </div>
+            <div class="nv-links">
+                <div class="nv-icons search-icon"><a href="/search"><i class="fa-solid fa-magnifying-glass"></i></a></div>
+                <div class="nv-icons notification-icon"><i class="fa-solid fa-bell"></i>
+                    <div class="notification-box-container">
+                        <div class="notification-box-content-container">
+                            <div class="notification-cards-container">
+                                <!-- Single Cards -->
+
+                                {% for notification,org in notifications.items() %}
+                                <div class="notification-card-container" id="{{notification.eid}}">
+                                    <div class="notification-image-container" style="height: 85%; width: 15%; border-radius: 50%; background: url('../static/images/profile/{{org.profile_photo}}')">
+                                        <!-- Organisation image -->
+                                    </div>
+                                    <div class="notification-content-container">
+                                        <div class="clear-current-notification-btn">
+                                                <button name="delete_not" id="delete_not" type="submit" 
+                                                onclick="function1('{{notification.eid}}')"
+                                                value="{{notification.eid}}" style="background: none;
+                                                                                color: inherit;
+                                                                                border: none;
+                                                                                padding: 0;
+                                                                                font: inherit;
+                                                                                cursor: pointer;
+                                                                                outline: inherit;"> 
+                                                                                <i class="fa-solid fa-xmark"></i>
+                                                                            </button>
+                                        </div>
+                                        <div class="notification-message">{{notification.message}}</div>
+                                        <div class="notification-org-name">- {{org.name}}</div>
+                                        <div class="notification-time">Just Now</div>
+                                    </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                            <div class="clear-all-notification">Clear All</div>
+                        </div>
+                    </div>
+                </div>
+                <a href="/logout" style="text-decoration: none;"><div class="nv-icons logout-btn"><i class="fa-solid fa-arrow-right-from-bracket"></i> <span class="logout-text">Logout</span></div></a>
+            </div>
+        </div>
+
+        <!-- Reminder container -->
+
+        <div class="clientDashboard-container container-1">
+            
+            <div class="user-info-container">
+                <a href="{{url_for('profile',lid=session['lid'])}}" style="text-decoration: none; color:black">
+                <div class="text-container">
+                    <div style="text-transform: capitalize;" class="user-text"><div class="hello"> Hello, </div >{{session['name']}}</div>
+                    <div class="edit-text">edit</div>
+                </div>
+                </a>
+            </div>
+
+            <div class="reminder-container">
+                
+                <div class="reminder-heading-container">
+                    <div class="reminder-heading">Reminders</div>
+                    <div class="view-more reminder-vm">View More</div>
+                </div>
+                
+                <div class="reminder-cards-container">
+ 
+                    <!-- Deleted some code which is saved in notepad -->
+
+                    {% for k,v in ongoing.items() %}
+                    <div class="reminder-card ongoing-rc">
+                        <div class="rc-content-container">
+                            <div class="rc-text-container">
+                                <div class="rc-heading">{{v.name}}</div>
+                                <div class="rc-status">Ongoing</div>
+                                <div class="rc-time">{{v.time}} to {{v.endTime}}</div>
+                            </div>
+                            <button class="join-btn-container">Join Now</button>
+                        </div>
+                    </div>
+                    {% endfor %}
+                    {% for k,v in registered.items() %}
+                    <div class="reminder-card">
+                        <div class="rc-content-container">
+                            <div class="rc-text-container">
+                                <div class="rc-heading">{{v.name}}</div>
+                                <div class="rc-status">{{v.date}}</div>
+                                <div class="rc-time">{{v.time}} to {{v.endTime}}</div>
+                            </div>
+                            <div class="rc-right">
+                                <div class="text-container">
+                                    <!-- <div class="days-container">
+                                        <div class="days-heading">8</div>
+                                        <div class="days-text">Days to Go</div>
+                                    </div> -->
+                                    <button class="view-ticket-btn">View Ticket</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <div class="clientDashboard-container container-2">
+            <div class="events-heading heading">
+                <div class="events-heading">Events</div>
+                <div class="load-more events-lm">Load More</div>
+            </div>
+
+
+            <div class="events-cards-container">
+
+
+
+                {% for event in events %}
+                <div class="events-card cd-events-card" style="background: url('./static//images/events/{{event.eventImg}} ');object-fit: cover;"><a href="{{url_for('eventPage',eid=event.eid)}}" style="text-decoration: none">
+                    <div class="ec-content-container">
+                        <img class="rounded-circle img-fluid"
+                                    style="object-fit: cover; border-radius: 0px;width: 50px;height: 50px;"
+                                    src="./static//images/profile/{{event.orgImg}}">
+                        <!-- <div class="org-logo" style="background: url('../static//images/apple.png'); background: grey; border: 50%; width: 2rem; height: 2rem;"></div> -->
+                        <div class="event-description">{{event.description}}</div>
+                        <div class="ec-event-heading">{{event.name}}</div>
+                        <div class="ec-event-date">{{event.date}}</div>
+                        <div class="ec-event-domain">{{event.domain}}</div>
+                    </a></div>
+                </div>
+
+                {% endfor %}
+            
+            </div>
+        </div>
+
+        <div class="clientDashboard-container container-3">
+            <div class="institute-content-container">
+                <div class="institute-text-container">
+                    <div class="institute-name">External Events</div>
+
+                    <div class="view-more institute"  id="loadMore">View More</div>
+                </div>
+            </div> 
+
+            <div class="institute-cards-container">
+
+                <!-- Single card -->
+
+                {% for event in exevents %}
+                <a href="{{event.url}}" style="text-decoration: none">
+                <div class="institute-card" style="background: url('{{event.image}}'); background-size: cover; background-repeat: no-repeat;">
+                    <div class="ic-content-container">
+                        <!-- <img class="rounded-circle img-fluid"
+                                    style="object-fit: cover; border-radius: 0px;width: 50px;height: 50px;"
+                                    src="./static//images/profile/{{event.orgImg}}"> -->
+                        <!-- <div class="org-logo" style="background: url('../static//images/profile/{{event.orgImg}}');  border: 50%; width: 2rem; height: 2rem;"></div> -->
+                        <div class="ec-event-heading">{{event.name}}</span></div>
+                        <div class="ec-event-date">{{event.date}}</div>
+                        <div class="ec-event-domain">{{event.detail}}</div>
+                    </div>
+                </div>
+                </a>
+                {% endfor %}
+
+            </div>
+        </div>
+
+
+        <div class="clientDashboard-container container-3">
+            <div class="institute-content-container">
+                <div class="institute-text-container">
+                    <div class="institute-name">International Events</div>
+                    <div class="view-more institute">View More</div>
+                </div>
+            </div>
+
+            <div class="institute-cards-container">
+
+                <!-- Single card -->
+                {% for event in international_events %}
+                <a href="{{event.url}}" style="text-decoration: none">
+                <div class="institute-card" style="background: gray; background-size: cover; background-repeat: no-repeat;">
+                    <div class="ic-content-container">
+                        <!-- <img class="rounded-circle img-fluid"
+                                    style="object-fit: cover; border-radius: 0px;width: 50px;height: 50px;"
+                                    src="./static//images/profile/{{event.orgImg}}"> -->
+                        <!-- <div class="org-logo" style="background: url('../static//images/profile/{{event.orgImg}}');  border: 50%; width: 2rem; height: 2rem;"></div> -->
+                        <div class="ec-event-heading">{{event.name}}</span></div>
+                        <div class="ec-event-date">{{event.date}}</div>
+                        <div class="ec-event-domain">{{event.detail}}</div>
+                    </div>
+                </div>
+                </a>
+                {% endfor %}
+
+            </div>
+        </div>
+
+        <div class="clientDashboard-container container-4">
+            <div class="courses-heading-container">
+                <div class="courses-heading heading">Courses</div>
+                <div class="load-more courses-lm">Load more</div>
+
+
+            </div>
+
+            <div class="courses-cards-container">
+                <!-- Single card -->
+                {% for course in courses %}
+                <a href="{{course.url}}" style="text-decoration: none;">
+                    <div class="course-card" style="background: grey; background-size: cover; background-repeat: no-repeat; display: flex; flex-direction: column; justify-content: center; margin-bottom: 5vh;">
+                            <div class="course-text-heading">{{course.name}}</div>
+                            <div class="course-domain">{{course.detail}}</div>
+                        </div>
+                </a>
+                {% endfor %}
+
+                
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"
+          integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+          crossorigin="anonymous"></script>
+
+          <script src="../static/javascript/viewmore.js"></script>
+          <script src="../static/javascript/unsplash.js"></script>
+<script>
+    const bellIcon = document.querySelector('.fa-bell');
+    const notificationBox = document.querySelector('.notification-box-container');
+    let isNotificationOpen = false;
+
+    function handleNotificationBox() {
+        if(isNotificationOpen) {
+            notificationBox.style.display = 'flex';
+        } else {
+            notificationBox.style.display = 'none';
+        }
+    };
+
+    bellIcon.addEventListener('click', () => {
+        console.log('bell clicked');
+        isNotificationOpen = !isNotificationOpen;
+        handleNotificationBox();
+    });
+
+    function close(ele) {
+        ele.style.display = 'none';
+    }
+
+function function1(eid){
+    document.getElementById(eid).style.display = 'none';
+    $.ajax({
+        url: '/clientDashboard',
+        type: "POST",
+        data: {
+                    delete_not:eid
+            },
+    });
+}
+
+    // $(document).on('submit','#delete_notification',function(e)
+    //                {
+    //         e.preventDefault();
+    //         close(document.getElementById('notification-card-container'))
+    //         $.ajax({
+    //             type:'POST',
+    //             url:'/clientDashboard',
+    //             data:{
+    //                 delete_not:$("#delete_not").val()
+    //             },
+    //         })
+    //         });
+    
+</script>
+</body>
+
+
+</html>

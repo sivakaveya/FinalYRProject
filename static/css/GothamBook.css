@@ -1,0 +1,15 @@
+@font-face {
+	font-family: 'GothamBook';
+<<<<<<< HEAD
+	src: url(../../assets/fonts/./GothamBook.eot) format('embedded-opentype'),
+	url(../../assets/fonts/./GothamBook.woff) format('woff'),
+	url(../../assets/fonts/./GothamBook.ttf) format('truetype');
+=======
+	src: url(../fonts/GothamBook.eot) format('embedded-opentype'),
+	url(../fonts/GothamBook.woff) format('woff'),
+	url(../fonts/GothamBook.ttf) format('truetype');
+>>>>>>> ce6022c8f095cb5b7ece00a010cf4570ce334a4d
+	font-weight: 400;
+	font-style: normal;
+	font-display: auto;
+}

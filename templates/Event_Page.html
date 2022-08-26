@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Event Page</title>
+    <link rel="stylesheet" href="../static//bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../static//css/gothambold1.css">
+    <link rel="stylesheet" href="../static//css/GothamBook.css">
+    <link rel="stylesheet" href="../static//css/GothamLight.css">
+    <link rel="stylesheet" href="../static//fonts/fontawesome-all.min.css">
+    <link rel="stylesheet" href="../static//fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="../static//fonts/ionicons.min.css">
+    <link rel="stylesheet" href="../static//fonts/fontawesome5-overrides.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css" integrity="sha512-10/jx2EXwxxWqCLX/hHth/vu2KY3jCF70dCQB8TSgNjbCVAC/8vai53GfMDrO2Emgwccf2pJqxct9ehpzG+MTw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://js.stripe.com/v3/"></script>
+    <link rel="stylesheet" href="../static//css/Event_Page.css">
+    <meta property="og:image" content="../static//img/Logo.png" />
+    <meta property="og:locale" content="en_IN" />
+    <meta property="og:title" content="Event Page"/>  
+    <meta property="og:description" content="{{event.name}}"/>  
+
+</head>
+
+<body>
+<style>
+    .btn-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 13rem;
+        margin-right: 5rem;
+        gap: 1rem;
+        position: relative;
+        left: -5rem;
+    }
+
+    .btn-container  button {
+        width: 8.5rem;
+        height: 2.75rem;
+    }
+
+    .cancel-event {
+        border: 1px solid #00446F;
+        border-radius: 5px;
+        background: white;
+        color: #00446F;
+        font-family: gothambold1; 
+    }
+
+    .view-ticket {
+        background: #13C0D7 0% 0% no-repeat padding-box;
+        border-radius: 5px;
+        font-family: gothambold1;
+        color: white;
+        border: none;
+
+    }
+
+    .popup-background-container {
+        height: 100%;
+        width: 100%;
+        position: fixed;
+        z-index: 10;
+        top: 0;
+        left: 0;
+        background: #00000099;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .cancel-event-popup-container {
+        height: 17em;
+        width: 34.5rem;
+        background: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .cancel-event-content-container {
+        height: 90%;
+        width: 90%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .popup-cancel-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .close-popup-container {
+        align-self: end;
+        height: 1.2rem;
+        width: 1.2rem;
+        cursor: pointer;
+    }
+
+    .warning-container {
+        font-family: gothamedium1;
+        font-size: 1.1rem;
+    }
+
+    .warning-icon-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #E33B3B;
+    }
+
+    .reason-textarea {
+        background: #E6E6E6 0% 0% no-repeat padding-box;
+        border-radius: 5px;
+        padding: 1rem;
+        font-size: 0.8rem;
+        font-family: GothamLight;
+        border: none;
+        resize: none;
+    }
+
+    .pu-cancel-form {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .pu-cancel-btn-container {
+        display: flex;
+        justify-content: center;
+        width: 80%;
+        margin-top: 1.25rem;
+    }
+
+    .popup-cancel-btn-container {
+        border: 1px solid #00446F !important;
+        border-radius: 5px;
+        border: none;
+        width: 8.5rem;
+        height: 2.25rem;
+        color: #00446F !important;
+        background: white;
+        font-family: gothambold1;
+    }
+
+    @media screen and (max-width: 767px) {
+        .btn-container {
+            left: 0;
+            margin-right: 1.5rem;
+        }
+
+        .cancel-event {
+            font-size: 0.8rem;
+        }
+
+        .view-ticket {
+            font-size: 0.8rem;
+        }
+
+        .btn-container button {
+            width: 7rem;
+            height: 2.5rem;
+        }
+    }
+</style>
+<body>
+    <div class="popup-background-container" style="display: none">
+        <div class="cancel-event-popup-container">
+            <div class="cancel-event-content-container">
+                <div class="popup-cancel-container close-popup-container"><i class="fa-solid fa-circle-xmark"></i></div>
+                <div class="popup-cancel-container warning-icon-container"> <i class="fa-solid fa-triangle-exclamation fa-6x"></i> </div>
+                <div class="popup-cancel-container warning-container">Are you sure you want to cancel the event?</div>
+                <div class="popup-cancel-container input-text-container">
+                    <form action="{{ url_for('eventPage',eid=event.eid) }}" class="profile-edit-form hidden" method="POST" novalidate enctype="multipart/form-data">
+                        <div class="pu-cancel-btn-container">
+                            <button class="popup-cancel-btn-container" type="submit" name="cancel", value="cancel">Yes</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="modify-event-popup-container">
+
+        </div>
+    </div>
+    <div class="container-fluid flex-row header align-items-center justify-content-between">
+
+        <div style="font-family: GothamBook"> <img class="" style="height:100px ;width: 164px;  margin-right: 5vw;"
+                src="../static//img/Logo.png" alt="">
+            <a href="/clientDashboard" style="font-family: GothamBook; color: black; text-decoration:none;"> Dashboard</a>
+        </div>
+        <div class="flex-row"><img style="height:20px ;width: 20px;" src="../static//img/icons8-search.png" alt="">
+            <img style="height:20px ;width: 20px; margin-left: 2vw;" src="../static//img/bell.png" alt="">
+            <img style="height: 20px; width: 85px; margin-left: 2vw" src="../static//img/logout_withoutbg.png" alt="">
+        </div>
+    </div>
+    <div class="container-fluid poster-design " id="go" style="padding: 0 7vw; z-index: 5;">
+        <div class="row gy-3 d-none d-md-flex " style="margin: 0px;">
+            <div class="col-12 col-md-10 ">
+                <div>
+                    <h1 style="font-size: 30px;font-family: gothambold1;">{{event.name}}</h1>
+                </div>
+                <div class="row" style="margin-right: 0px;margin-left: 0px;">
+                    <h1 class="col-md-3" style="font-size: 17px;font-family: GothamLight;padding: 0px;">{{event.domain}}
+                    </h1>
+                    <h1 class="col-md-3" style="font-size: 13px;font-family: GothamLight;"><i class="fa fa-calendar"
+                            style="border-color: #12ccef;color: #12ccef;margin-right: 0.5vw;"></i>{{event.date}} at
+                        {{event.time}} to {{event.endTime}};</h1>
+                    <h1 class="col-md-3" style="font-size: 13px;font-family: GothamLight;"><svg
+                            xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 20 20" fill="none"
+                            style="color: #12ccef;padding-right: 0px;font-size: 14px;margin-right: 0.5vw;height: 20px;width: 15px;padding-bottom: 0.5vh;">
+
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M5.05025 4.05025C7.78392 1.31658 12.2161 1.31658 14.9497 4.05025C17.6834 6.78392 17.6834 11.2161 14.9497 13.9497L10 18.8995L5.05025 13.9497C2.31658 11.2161 2.31658 6.78392 5.05025 4.05025ZM10 11C11.1046 11 12 10.1046 12 9C12 7.89543 11.1046 7 10 7C8.89543 7 8 7.89543 8 9C8 10.1046 8.89543 11 10 11Z"
+                                fill="currentColor"></path>
+                        </svg>{{event.eventMode}} {% if event.eventMode=='offline' %}{{event.location}}{% endif %}</h1>
+                </div>
+            </div>
+            <div class="col-12 col-md-2 d-flex justify-items-center flex-column">
+                {% if registered==1 %}
+                <div class="btn-container">
+                    <div class="cancel-event-container">
+                        <button class="cancel-event">Cancel Event</button>
+                    </div>
+                    <div class="view-ticket-container">
+                        <button class="view-ticket">View Ticket</button>
+                    </div>
+                </div>
+                {% else %}
+                <form action="/create-checkout-session" class="profile-edit-form hidden" method="POST" novalidate enctype="multipart/form-data">
+                <button class="btn btn-primary my-auto"
+                    type="submit" name="register" value="register" 
+                    style="width: 100%;background: #12ccef;border-style: none;font-family: gothambold1;font-size: 20px;">Register
+                    Now</button>
+                    </form>
+                {% endif %}
+                <h1 style=" font-size: 10px;margin-top: 1vh;color: #00446F;">* Registration closes on
+                    {{event.regLastDate}}</h1>
+            </div>
+        </div>
+    </div>
+
+    <div class="container" style="margin-bottom: 12vh; ">
+        <div class="display-flex flex-wrap flex-row">
+            <section class="col-12 col-md-3"
+                style="margin-right: 0px;padding: 12px;padding-right: 0px;padding-bottom: 0px;">
+                <div class=" gx-0">
+                    <div class="col-12">
+                        <div class="overflow-hidden" style="min-height: 252.58px;max-height: 328.58px;">
+                            <div class="card"><img class="card-img w-100 d-block"
+                                    src="../static//images/events/{{event.eventImg}}"
+                                    style="object-fit: cover; max-height: 328.58px;min-height: 252.58px;border-radius: 5px;">
+                                <div class="card-img-overlay d-flex flex-column justify-content-end"
+                                    style="background: rgba(0,0,0,0.41);min-height: 252.58px;max-height: 328.58px;border-radius: 5px;">
+                                    <h4 style="color: rgb(255,255,255);font-family: GothamBook;font-size: 26px;">
+                                        {{event.name}}</h4>
+                                    <p style="font-family: GothamBook;color: rgb(255,255,255);font-size: 13px;">
+                                        {{event.date}}</p>
+                                    <p class="text-end"
+                                        style="font-family: GothamBook;color: rgb(255,255,255);font-size: 13px;">
+                                        {{event.domain}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class=" speakers left  gx-0" style="margin-top: 2vh;">
+                    <div class="col-12 order-sm-last">
+                        <div class="d-flex flex-column"
+                            style="box-shadow: 0px 0px 6px #00000019;width: 100%;border-radius: 5px;height: 246px;padding: 12px;">
+                            <h1 style="margin-top: 0px;font-family: GothamLight;font-size: 17px;font-weight: bold;">
+                                Speakers</h1>
+                                {% if event.noOfSpeakers==0 %}
+                                <p>No speakers mentioned by organisation</p>
+                                {% endif %}
+                            {% for i in range(event.noOfSpeakers) %}
+                            {% if i==0 %}
+                            <div class="d-flex justify-content-center"><img class="rounded-circle img-fluid"
+                                    style="object-fit: cover; border-radius: 0px;width: 70px;height: 70px;"
+                                    src="../static/images/events/{{event.speaker1Img}}">
+                                <div style="margin-left: 1vw;">
+                                    <div class="d-flex flex-row justify-content-between" style="width: 140px;">
+                                        <h1
+                                            style="font-family: GothamLight;font-size: 13px;color: #00446F;font-weight: bold;">
+                                            {{event.speaker1Name}}</h1><a href="{{event.speaker1LinkedIn}}"
+                                            style="text-decoration: none;"><i class="fa fa-linkedin"
+                                                style="margin-left: 0.5vw;padding-left: 0px;color: #00446f;"></i></a>
+                                    </div>
+                                    <p
+                                        style="font-size: 7px;font-family: GothamBook;margin-left: 0px;width: 140px;margin-bottom: 0px;">
+                                        {{event.speaker1Description}}</p>
+                                </div>
+                            </div>
+                            {% elif i==1 %}
+                            <div class="d-flex justify-content-center"><img class="rounded-circle img-fluid"
+                                    style=" object-fit: cover; border-radius: 0px;width: 70px;height: 70px;"
+                                    src="../static/images/events/{{event.speaker2Img}}">
+                                <div style="margin-left: 1vw;">
+                                    <div class="d-flex flex-row justify-content-between" style="width: 140px;">
+                                        <h1
+                                            style="font-family: GothamLight;font-size: 13px;color: #00446F;font-weight: bold;">
+                                            {{event.speaker2Name}}</h1><a href="{{event.speaker2LinkedIn}}"
+                                            style="text-decoration: none;"><i class="fa fa-linkedin"
+                                                style="margin-left: 0.5vw;padding-left: 0px;color: #00446f;"></i></a>
+                                    </div>
+                                    <p
+                                        style="font-size: 7px;font-family: GothamBook;margin-left: 0px;width: 140px;margin-bottom: 0px;">
+                                        {{event.speaker2Description}}</p>
+                                </div>
+                            </div>
+                            {% else %}
+                            <div class="d-flex justify-content-center"><img class="rounded-circle img-fluid"
+                                    style="object-fit: cover; border-radius: 0px;width: 70px;height: 70px;"
+                                    src="../static/images/events/{{event.speaker3Img}}">
+                                <div style="margin-left: 1vw;">
+                                    <div class="d-flex flex-row justify-content-between" style="width: 140px;">
+                                        <h1
+                                            style="font-family: GothamLight;font-size: 13px;color: #00446F;font-weight: bold;">
+                                            {{event.speaker3Name}}</h1><a href="{{event.speaker3LinkedIn}}"
+                                            style="text-decoration: none;"><i class="fa fa-linkedin"
+                                                style="margin-left: 0.5vw;padding-left: 0px;color: #00446f;"></i></a>
+                                    </div>
+                                    <p
+                                        style="font-size: 7px;font-family: GothamBook;margin-left: 0px;width: 140px;margin-bottom: 0px;">
+                                        {{event.speaker3Description}}</p>
+                                </div>
+                            </div>
+                            {% endif %}
+                            {% endfor %}
+
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="col-12 col-md-6"
+                style="margin-right: 0px;padding: 12px;padding-right: 0px;padding-bottom: 0px;">
+                <div class="row gx-0">
+                    <div class="col-12">
+                        
+                        <div class="row"
+                            style="margin-top: 0px;margin-right: 0px;margin-left: 0px;box-shadow: 0px 0px 6px #00000019;padding-top: 12px;padding-right: 12px;padding-bottom: 12px;padding-left: 12px;border-radius: 5px;">
+                            <div class="d-flex flex-column col-12 col-md-6">
+                                <h1 style="font-size: 17px;font-family: GothamLight;font-weight: bold;">Organiser</h1>
+                                <h1 style="font-size: 13px;color: #00446F;font-family: GothamLight;font-weight: bold;">
+                                    {{org.name}}</h1>
+                            </div>
+                            <div class="d-flex flex-column col-12 col-md-6">
+                                <h1 style="font-size: 17px;font-family: GothamLight;font-weight: bold;">Institute</h1>
+                                <h1 style="font-size: 13px;color: #00446F;font-family: GothamLight;font-weight: bold;">
+                                    {{org.institute}}</h1>
+                            </div>
+                            <div class="d-flex flex-column col-12 col-md-6 d-none d-md-flex">
+                                <h1 style="font-size: 17px;font-family: GothamLight;font-weight: bold;">Entry Fees</h1>
+                                <h1 style="font-size: 13px;color: #00446F;font-family: GothamLight;font-weight: bold;">
+                                    Rs.{{event.fees}}/-</h1>
+                            </div>
+                        </div>
+                        
+                        <div id="about" class="row overflow-hidden"
+                            style="margin-top: 2vh;margin-right: 0px;margin-left: 0px;box-shadow: 0px 0px 6px #00000019;padding-top: 12px;padding-right: 12px;padding-bottom: 12px;padding-left: 12px;max-height: 239px;">
+                            <div style="padding: 0px 12px;padding-left: 0px;">
+                                <h1 style="font-size: 17px;font-family: GothamLight;font-weight: bold;">About Event</h1>
+                                <p
+                                    style="font-family: GothamBook;font-size: 13px;margin-top: 2vh;color: #00446f;padding-bottom: 12px;">
+                                    <strong>{{event.description}}</strong><br><br><br><br></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class=" speakers-mobile  gx-0" style="margin-top: 2vh;">
+                    <div class="col-12 order-sm-last">
+                        <div class="d-flex flex-column"
+                            style="box-shadow: 0px 0px 6px #00000019;width: 100%;border-radius: 5px;height: 246px;padding: 12px;">
+                            <h1 style="margin-top: 0px;font-family: GothamLight;font-size: 17px;font-weight: bold;">
+                                Speakers</h1>
+                            <div class="d-flex justify-content-center"><img class="rounded-circle img-fluid"
+                                    style="border-radius: 0px;width: 70px;height: 70px;"
+                                    src="../static/images/events/{{event.speaker1Img}}">
+                                <div style="margin-left: 1vw;">
+                                    <div class="d-flex flex-row justify-content-between" style="width: 140px;">
+                                        <h1
+                                            style="font-family: GothamLight;font-size: 13px;color: #00446F;font-weight: bold;">
+                                            {{event.speaker1Name}}</h1><a href="{{event.speaker1LinkedIn}}"
+                                            style="text-decoration: none;"><i class="fa fa-linkedin"
+                                                style="margin-left: 0.5vw;padding-left: 0px;color: #00446f;"></i></a>
+                                    </div>
+                                    <p
+                                        style="font-size: 7px;font-family: GothamBook;margin-left: 0px;width: 140px;margin-bottom: 0px;">
+                                        {{event.speaker1Description}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row gx-0">
+                    <div class="col-12 d-none d-md-flex" style="padding: 0px 12px;">
+                        <div class="d-flex flex-column" style="padding: 12px;width: 100%;margin-top: 4vh;">
+                            <div class="d-flex justify-content-between" style="padding: 12px;">
+                                <h1 style="font-size: 17px;font-family: GothamBook;font-weight: bold;">See Similar
+                                    Events</h1>
+                                <h1 style="font-size: 13px;font-family: GothamBook;color: #00446F;">View More</h1>
+                            </div>
+                            <div class="row justify-content-between"
+                                style="margin-top: 1vh;margin-right: 0px;margin-left: 0px;">
+                                <div class="col-md-6" style="padding-left: 0px;border-radius: 5px;max-height: 100%;">
+                                    <div class="card" style="height: 240px;"><img class="card-img w-100 d-block"
+                                            src="../static//img/pexels-josh-sorenson-378268.jpg"
+                                            style="max-height: 100%;height: 240px;border-radius: 5px;">
+                                        <div class="card-img-overlay d-flex flex-column justify-content-end"
+                                            style="background: rgba(0,0,0,0.41);border-style: none;padding-top: 16px;border-radius: 5px;">
+                                            <img class="rounded-circle"
+                                                src="../static//img/pexels-josh-sorenson-378268.jpg"
+                                                style="width: 45px;/*align-self: center;*/height: 45px;/*align-self: center;*/background: #ffffff;margin-bottom: 3vh;">
+                                            <h4
+                                                style="color: rgb(255,255,255);font-family: GothamBook;font-size: 26px;">
+                                                Crossing over to the Cryptoverse</h4>
+                                            <p style="font-family: GothamBook;color: rgb(255,255,255);font-size: 13px;">
+                                                30/03/2022</p>
+                                            <p class="text-end"
+                                                style="font-family: GothamBook;color: rgb(255,255,255);font-size: 13px;margin-bottom: 8px;">
+                                                Blockchain Technology</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6" style="padding-left: 0px;border-radius: 5px;max-height: 100%;">
+                                    <div class="card" style="height: 240px;border-radius: 5px;"><img
+                                            class="card-img w-100 d-block"
+                                            src="../static//img/pexels-josh-sorenson-378268.jpg"
+                                            style="max-height: 100%;height: 240px;border-radius: 5px;">
+                                        <div class="card-img-overlay d-flex flex-column justify-content-end"
+                                            style="background: rgba(0,0,0,0.41);border-style: none;padding-top: 16px;border-radius: 5px;">
+                                            <img class="rounded-circle"
+                                                src="../static//img/pexels-josh-sorenson-378268.jpg"
+                                                style="width: 45px;/*align-self: center;*/height: 45px;/*align-self: center;*/background: #ffffff;margin-bottom: 3vh;">
+                                            <h4
+                                                style="color: rgb(255,255,255);font-family: GothamBook;font-size: 26px;">
+                                                Crossing over to the Cryptoverse</h4>
+                                            <p style="font-family: GothamBook;color: rgb(255,255,255);font-size: 13px;">
+                                                30/03/2022</p>
+                                            <p class="text-end"
+                                                style="font-family: GothamBook;color: rgb(255,255,255);font-size: 13px;margin-bottom: 8px;">
+                                                Blockchain Technology</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="  col-12 col-md-3" style="padding: 12px; padding-right: 0px;padding: bottom 0;">
+                <div class="row gx-0">
+                    <div class="col-12">
+                        <div class="container d-flex flex-column d-none d-md-flex overflow-hidden"
+                            style="box-shadow: 0px 0px 6px #00000019;padding: 12px;padding-top: 12px;padding-right: 12px;max-height: 237px;border-radius: 5px;">
+                            <div class="d-flex justify-content-center" style="/*justify-items: center;*/"><img
+                                    class="rounded-circle img-fluid"
+                                    src="../static//images/profile/{{org.profile_photo}}"
+                                    style="width: 90px;/*align-self: center;*/height: 90px;margin-top: 2vh;/*align-self: center;*/margin-left: 4vw;">
+                                    <a href="{{url_for('viewOrgProfile',lid=org.lid)}}">
+                                    <i
+                                    class="fa fa-external-link"
+                                    style="margin-top: 2vh;/*align-items: flex-end;*/padding: 0px;padding-left: 0px;color: #00446F;font-size: 18px;margin-left: 4vw;"></i>
+                                    </a>
+                            </div>
+                            <h1
+                                style="color: #00446F;text-align: center;font-size: 13px;margin-top: 2vh;font-family: GothamBook;">
+                                {{org.name}}</h1>
+                            <h1
+                                style="color: #00446F;text-align: center;font-size: 10px;margin-top: 0px;padding-right: 1vw;padding-left: 1vw;/*width: 95%;*/font-family: GothamBook;">
+                                {{org.description}}<br><br></h1>
+                        </div>
+                    </div>
+                </div>
+                <div class="row gx-0" style="margin-top: 2vh; margin-bottom: 14vh;">
+                    <div class="col-12">
+                        <div class="container d-flex flex-column d-md-flex"
+                            style="box-shadow: 0px 0px 6px #00000019;height: 153px;width: 100%;margin-left: 0px;border-radius: 5px;padding: 12px;">
+                            <h1
+                                style="color: #00446F;/*text-align: center;*/font-size: 13px;margin-top: 2vh;padding-top: 1vh;font-family: gothambold1;">
+                                Need Further Assistance?</h1>
+                            <h1
+                                style="color: var(--bs-gray-900);/*text-align: center;*/font-size: 13px;margin-top: 0px;padding-top: 0px;font-family: GothamBook;">
+                                Contact <strong style="font-size: 13px;">{{event.ptOfContact_name}}</strong></h1>
+                            <div class="d-flex d-md-block justify-content-between">
+                                <h1
+                                    style="color: #00446F;/*text-align: center;*/font-size: 10px;margin-top: 0vh;padding-top: 0px;font-family: GothamBook;">
+                                    <i class="fa fa-phone" style="color: rgba(33,37,41,0.59);"></i>&nbsp;
+                                    {{event.ptOfContact_phone}}</h1>
+                                <h1
+                                    style="color: #00446F;/*text-align: center;*/font-size: 10px;margin-top: 0vh;padding-top: 0px;font-family: GothamBook;margin-bottom: 2vh;">
+                                    <i class="icon ion-android-mail" style="color: rgba(33,37,41,0.59);"></i>&nbsp;
+                                    {{event.ptOfContact_email}}</h1>
+                            </div>
+                        </div>
+                        <div class="container d-flex flex-column d-md-flex"
+                            style=" box-shadow: 0px 0px 6px #00000019;height: 153px;margin-top: 2vh;width: 100%;margin-left: 0px;border-radius: 5px;padding: 12px;padding-left: 12px;">
+                            <h1
+                                style="color: #00446F;/*text-align: center;*/font-size: 13px;margin-top: 2vh;padding-top: 1vh;font-family: gothambold1;">
+                                Share Event</h1>
+                            <div class="d-flex justify-content-between"
+                                style="padding-left: 2vw;margin-top: 1vh;margin-bottom: 0px;padding-bottom: 3vh;">
+                                <a href="{{socialmediaurls['facebook']}}" target="_blank"><i
+                                    class="fa fa-facebook"
+                                    style="color: rgba(33,37,41,0.59);margin-right: 1vw;font-size: 15px;">
+                                </i></a>
+                                <a href="{{socialmediaurls['twitter']}}" target="_blank"><i
+                                    class="fa fa-twitter"
+                                    style="color: rgba(33,37,41,0.59);font-size: 15px;margin-right: 1vw;">
+                                </i></a>
+                                <a href="{{socialmediaurls['whatsapp']}}" target="_blank"><i
+                                    class="fa fa-whatsapp" style="color: rgba(33,37,41,0.59);font-size: 15px;">
+                                </i></a>
+                                <a href="{{socialmediaurls['gmail']}}" target="_blank"><i
+                                class="fa fa-envelope" style="color: rgba(33,37,41,0.59);font-size: 15px;">
+                                </i></a>
+                                <a href="{{socialmediaurls['linkedin']}}" target="_blank"><i
+                                class="fa fa-linkedin" style="color: rgba(33,37,41,0.59);font-size: 15px;">
+                                </i></a>
+                                <button onclick="myFunction()" class="d-flex justify-content-between"
+                                style="color: #00446F;/*text-align: center;*/font-size: 10px;margin-top: 0px;padding-top: 0.5vh;font-family: GothamBook;border-radius: 5px;border: 1px solid #707070;height: 26px;margin-left: 1vw;padding-right: 12px;padding-left: 12px;">
+                                
+                                    Copy the link
+                                    <i class="fas fa-copy" 
+                                        style="font-size: 12px;/*align-self: end;*//*text-align: left;*//*justify-self: end;*/margin-left: 1vw;">
+                                    </i>&nbsp;&nbsp;
+                            </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+    <div class="footer-mobile align-items-center justify-content-between" style=" font-family: gothambold1;">
+        <div class=""><img class="img1" src="../static//img/wallet-outline.png" alt="">
+            <img src="../static//img/rupee.png" alt="" style="margin-left: 2vw;"> 300/-
+        </div>
+
+        {% if registered==1 %}
+                <div class="btn-container">
+                    <div class="cancel-event-container">
+                        <button class="cancel-event">Cancel Event</button>
+                    </div>
+                    <div class="view-ticket-container">
+                        <button class="view-ticket">View Ticket</button>
+                    </div>
+                </div>
+        {% else %}
+        <form action="/create-checkout-session" class="profile-edit-form hidden" method="POST" novalidate enctype="multipart/form-data">
+        <button class="btn btn-primary my-auto"
+            type="submit" name="register" value="register" 
+            style="width: 100%;background: #12ccef;border-style: none;font-family: gothambold1;font-size: 20px;">Register
+            Now</button>
+            </form>
+        {% endif %}
+    </div>
+    <script>
+        let popupbackground = document.querySelector('.popup-background-container');
+        let closeBtn = document.querySelector('.close-popup-container');
+        let cancelEventMainPage = document.querySelector('.cancel-event-container');
+        console.log('working');
+        function close(ele) {
+            ele.style.display = 'none';
+        }
+
+        function open(ele) {
+            ele.style.display = 'flex';
+        }
+
+        window.addEventListener('keydown', (e) => {
+            if(e.keyCode = 'Escape') {
+                close(popupbackground);
+            }
+        })
+
+        cancelEventMainPage.addEventListener('click', () => {
+            open(popupbackground);
+        });
+
+        closeBtn.addEventListener('click', () => {
+            close(popupbackground);            
+        });
+    </script>
+    <script src="../static//bootstrap/js/bootstrap.min.js"></script>
+    <!-- <script src="../static//js/event_page.js "></script> -->
+    <script>
+        function myFunction(){
+            navigator.clipboard.writeText('{{socialmediaurls["copy"]}}');
+        }
+        
+    </script>
+</body>
+
+</html>
+

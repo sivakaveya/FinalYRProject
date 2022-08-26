@@ -1,0 +1,39 @@
+
+
+.show-main{
+    margin-top: 12vh;
+    margin-bottom: 12vh;
+}
+
+.poster-design{
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    box-shadow: 0px 10px 20px -20px #00000d;
+    margin-bottom: 4vh;
+}
+
+.event-heading{
+    margin: 0px 7vw;
+}
+
+.main-body{
+    display: flex;
+    flex-direction: row;
+}
+
+.side{
+    display: flex;
+    flex-direction: column;
+}
+.poster{
+    height: 328.58px;
+    background-image: url("../img/pexels-josh-sorenson-378268.jpg");
+    border-radius: 10px; 
+    
+}
+
+.info{
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+   
+    border-radius: 5px;
+    margin-left: 1.5vh;
+}

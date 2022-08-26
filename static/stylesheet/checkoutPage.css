@@ -1,0 +1,411 @@
+* { margin: 0; padding: 0; }
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input:focus {
+    outline: none;
+}   
+
+input {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.main {
+    background: linear-gradient(rgba(255,255,255,.75), rgba(255,255,255,.75)), url('../images/checkoutPageBackgorund.jpg') no-repeat;
+    background-size: 100% 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+}
+
+.checkout-popup {
+    height: 70vh;
+    width: 75vw;
+    background: #ffffff 0% 0% no-repeat padding-box;
+    box-shadow: 0px 3px 6px #00000029;
+    border-radius: 8px;
+
+    display: flex;
+}
+
+.cop-lefthalf {
+    flex: 0.7;
+    height: 100%;
+
+    display: flex;
+    overflow: scroll;
+}
+
+.underline {
+    border-bottom: 2px solid #00446F;
+}
+
+/* General css for credit-debit side start */
+
+.main-info-container {
+    margin: 4vh 2vw;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.info-box {
+    /* background: lightpink; */
+    margin: 1vh;
+    margin-top: 2vh;
+    width: 40vw;
+}
+
+.type2 {
+    height: 8vh !important;
+    display: flex;
+    align-items: center;
+}
+
+.text-side {
+    flex: 0.5;
+}
+
+.input-side {
+    flex: 0.5;
+}
+
+.type1 {
+    /* background: rosybrown; */
+    height: 12vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.text-heading {
+    font-weight: 600;
+    font-size: 19px;
+    font-family:'Segoe UI';
+    color: #3B3D3F;
+}
+
+.text-body {
+    font-weight: 400;
+    font-size: 12px;
+    font-family:'Segoe UI';
+    color: #8C8E90;
+}
+
+.info-box input {
+    background: #F5F5F5 0% 0% no-repeat padding-box;
+    border-radius: 8px;
+    width: 100%;
+    border: none;
+    height: 5vh;
+    padding-left: 2vw;
+}
+
+
+
+/* General css for credit-debit side end */
+
+/* Checkout start */
+
+.box1 {
+    display: flex;
+    justify-content: space-between;
+
+    align-items: baseline;
+}
+
+.checkout-text {
+    font: normal normal bold 29px Montserrat;
+    letter-spacing: 0px;
+    color: #00446F;
+}
+
+.payment-type {
+    display: flex;
+    flex: 0.4;
+
+    justify-content: space-between;
+    font: normal normal normal 13px Montserrat;
+    letter-spacing: 0px;
+    color: #3B3D3F;
+}
+
+.payment-type:hover {
+    cursor: pointer;
+}
+
+/* Checkout end */
+
+/* Card number box 2 start */
+
+
+
+/* Card Number box 2 end */
+
+/* Expiry date box5 start */
+
+
+.special-input {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.slash {
+    font-weight: bold;
+    font-size: 30px;
+    font-family: Segoe UI;
+    color: #3B3D3F;
+}
+
+.special-input input {
+    width: 30%;
+}
+
+/* Expiry Date card box5 end */
+
+/* Pay now box6 start */
+
+
+.payNow-button {
+    width: 100%;
+    height: 5vh;
+    background: #12CCE5 0% 0% no-repeat padding-box;
+    border: none;
+    border-radius: 8px;
+    font-weight :600;
+    font-size: 22px;
+    font-family: 'Segoe UI';
+    letter-spacing: 0px;
+    color: #FFFFFF;
+}
+
+/* Pay now box6 end */
+
+/* Net banking Section start */
+
+/* Bank Logo and name start */
+
+
+.bank-details {
+    height: 42vh;
+    width: 80%;
+    margin: auto;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.logo-container {
+    flex: 0.9;
+    display: flex;
+    flex-wrap: wrap;
+    grid-gap: 1.5vw;
+    align-items: center;
+    justify-content: center;
+}
+
+.bank-logo {
+    height: 100%;
+    width: 100%;
+}
+
+.logo {
+    height: 12vh;
+    width: 9vw;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.logo:hover {
+    cursor: pointer;
+    background: rgba(135, 206, 235, 0.3);
+    z-index: 2;
+}
+
+.select-bank-list {
+    flex: 0.1;
+}
+
+.bank-names {
+    width: 100%;
+    height: 100%;
+    background: #F5F5F5 0% 0% no-repeat padding-box;
+    border-radius: 8px;
+    border: none;
+}
+
+.bank-names:focus {
+    outline: none;
+}
+
+/* Bank logo and name end */
+
+/* Net banking Section end */
+
+
+/* Right half section starts */
+
+.cop-righthalf {
+    flex: 0.3;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.tophalf {
+    height: 23.5vh;
+    width: 12vw;
+    background: transparent url('../images/apple.png') 0% 0% no-repeat padding-box;
+    box-shadow: 0px 3px 6px #00000029;
+    border-radius: 8px;
+    z-index: 2;
+}
+
+.bottomhalf1 {
+    height: 40vh;
+    width: 17vw;
+    margin-top: -14vh;
+    background: #CBD9E1 0% 0% no-repeat padding-box;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.bottomhalf1::after, .bottomhalf2::before {
+    content: '';
+    background: white;
+    height: 40px;
+    width: 40px;
+    position: absolute;
+    top: 64vh;
+    border-radius: 50%;
+    left: 66.3vw;
+}
+
+.bottomhalf2::before {
+    left: 83.5vw;
+}
+
+.bottomhalf2 {
+    width: 17vw;
+    height: 14vh;
+    border-top: 2px dashed #8C8E90;
+    background: #CBD9E1 0% 0% no-repeat padding-box;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.payment-info-container {
+    height: 20vh;
+    width: 70%;
+    margin-bottom: 3vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.payment-box {
+    display: flex;
+    height: 3vh;
+    width: 100%;
+
+    align-items: center;
+}
+
+.payment-heading {
+    flex: 0.5;
+    text-align: left;
+    font-weight: 600;
+    font-size: 1.8vh;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: #00446F;
+}
+
+.payment-body {
+    flex: 0.5;
+
+    text-align: right;
+    font-weight: 600;
+    font-size: 1.5vh;
+    font-family: 'Gill Sans';
+    letter-spacing: 0px;
+    color: #6A8393ED;
+}
+
+.total-container {
+    height: 9vh;
+    width: 70%;
+
+    display: flex;
+
+}
+
+.tc-heading {
+    font-size: 600;
+    font-size: 1.8vh;
+    font-family: 'Arial Narrow', Arial, sans-serif;
+    color: #6A8393ED;
+}
+
+.tc-left {
+    flex: 0.5;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.tc-right {
+    flex: 0.5;
+    height: 100%;
+
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.tc-right i {
+    color: #8897A1;
+    font-size: 4.6vh;
+}
+
+.tc-body {
+    font-weight: 600;
+    font-size: 1.5vh !important;
+    font-family: 'Courier New', Courier, monospace, Segoe UI;
+    color: #6A8393ED;
+}
+
+.tc-short {
+    font-size: 2vh !important;
+    color: #00446F;
+}
+
+.tc-bold {
+    color: #00446F;
+    font-size: 2.4vh;
+}
+
+/* Right half section ends */

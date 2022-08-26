@@ -1,0 +1,529 @@
+button, .events-card:hover, .institute-card:hover, .course-card:hover, .view-more {
+    cursor: pointer;
+}
+
+.clientDashboard-container {
+    width: min(80rem, 82%);
+}
+
+
+.container-2 {
+    height: fit-content;
+    margin-top: 5rem;
+}
+
+.events-cards-container, .institute-cards-container {
+    display: grid;
+    /* grid-template-columns: repeat(auto-fit, minmax(16rem, auto)); */
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 1.3rem;
+}
+
+.events-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.load-more {
+    font-size: 0.7rem;
+    font-family: GothamM;
+    color: #00446f;
+    cursor: pointer;
+}
+
+.heading {
+    font-size: 1.5rem;
+    color: #00446f;
+    font-weight: 600;
+    font-family: GothamB;
+    margin-bottom: 1rem;
+}
+.tint{
+    background-color: #000000;
+    opacity: 0;
+}
+
+.cd-events-card {
+    height: 22rem;
+}
+
+
+
+.container-3 {
+    margin-top: 3rem;
+    height: fit-content;
+    padding: 2rem;
+
+    background: hsl(187, 84%, 46%, 0.14) 0% 0% no-repeat padding-box;
+    display: flex;
+    flex-direction: column;
+}
+
+.institute-content-container {
+    width: 95%;
+    height: 80%;
+
+    display: flex;
+    justify-content: center;
+}
+
+.institute-text-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.institute-name {
+    color: #00446f;
+    font-size: 1.4rem;
+    font-weight: 600;
+}
+
+.institute-cards-container {
+    display: grid;
+    /* grid-template-columns: repeat(4, 1fr); */
+    width: 100%;
+    height: fit-content;
+    margin-top: 2rem;
+    /* grid-gap: 1.2rem; */
+}
+
+.institute-card {
+    height: 15rem;
+    border: 1px solid grey;
+    border-radius: 5px;
+    
+    box-shadow: inset 0px -65px 99px #000000, 5px 4px 6px #0000003D;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.institute-card:hover {
+    transition: ease-in 500ms;
+    background: hsla(0, 0%, 0%, 0.7);
+}
+
+.ic-content-container {
+    width: 80%;
+    height: 80%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+
+
+
+.container-4 {
+    margin-top: 3rem;
+    height: 30rem;
+}
+
+.courses-heading-container {
+    display: flex;
+    justify-content: space-between;
+    margin: 2rem 0;
+}
+
+.courses-cards-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 1.7rem;
+}
+
+.course-card {
+    height: 14rem;
+    border: 5px;
+
+    display: flex;
+    align-items: center;
+    box-shadow: inset 0px 0px 43px #000000, 5px 4px 6px #0000003D;
+    border-radius: 8px;
+}
+
+.course-card:hover {
+    transform: scale(1.025);
+    transition: linear 250ms;
+}
+
+.courses-text-container {
+    background: hsla(0, 0%, 100%, 0.86) 0% 0% no-repeat padding-box;
+    width: 100%;
+    height: 30%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.course-text-heading {
+    font-weight: 600;
+    font-size: 27px;
+    font-family: Montserrat;
+    color: #000000;
+}
+
+.course-domain {
+    font-size: 16px;
+    font-family: Montserrat;
+    color: #000000;
+}
+
+@media only screen and (max-width: 600px) { 
+    .nv-logo, .nv-logo > img {
+        width: 7rem;
+        height: 3rem;
+    }
+
+    .clientDashboard-container {
+        width: 90%;
+    }
+
+    /* .reminder-cards-container {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    }
+
+    .institute-cards-container, .reminder-cards-container, .events-cards-container, .courses-cards-container {
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+ 
+    } */
+
+    .ec-event-heading, .ec-event-type {
+        font-size: 12px;
+    }
+
+    .ec-event-date, .ec-event-domain {
+        font-size: 8px;
+    }
+
+    .institute-card {
+        height: 10rem;
+    }
+
+    .institute-text-container {
+        align-items: center;
+    }
+
+    .institute-name {
+        font-size: 14px;
+    }
+
+    .view-more {
+        font-size: 0.6rem;
+    }
+
+    .org-logo {
+        background: grey; border: 50%; 
+        width: 1rem;
+        height: 1rem;
+        border-radius: 50%;
+    }
+
+    .course-card {
+        height: 8rem;
+        width: 100%;
+    }
+
+    .course-text-heading {
+        font-size: 15px;
+    }
+
+    .course-domain {
+        font-size: 12px;
+    }
+
+    .courses-heading-container {
+        margin: 0.1rem 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+}
+
+
+@media only screen and (max-width: 425px) and (min-width: 0px) {
+
+    /* .institute-cards-container {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+    } */
+    .container-1 {
+        height: fit-content;
+    }
+
+    .container-3 {
+        padding: 1rem;
+    }
+
+    .view-more {
+        width: 4rem;
+        text-align: end;
+        cursor: pointer;
+    }
+
+    .edit-text {
+        font-size: 0.8rem;
+    }
+
+    .user-text {
+        font-size: 2.2rem;
+    }
+
+    .reminder-cards-container {
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    .events-cards-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .user-info-container {
+        max-height: 8rem;
+        width: 50%;
+    }
+
+    .clientDashboard-container {
+        width: 87%;
+    }
+
+    .heading {
+        font-size: 1.2rem;
+    }
+
+    .reminder-cards-container {
+        grid-template-columns: repeat(1, 1fr);
+        grid-gap: 0.8rem;
+    }
+
+    .institute-cards-container, .events-cards-container, .courses-cards-container {
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: 0.8rem;
+ 
+    }
+
+    .reminder-heading-container > .view-more {
+        visibility: hidden;
+    }
+
+    .rc-heading {
+        font-size: 0.8rem;
+    }
+
+    .rc-status {
+        font-size: 0.55rem;
+    }
+
+    .rc-time {
+        font-size: 0.6rem;
+    }
+
+    .reminder-card {
+        height: 100%;
+    }
+
+    .container-1 {
+        height: 7rem;
+        width: 90%;
+        gap: 0.6rem;
+    }
+
+    .clientDashboard-container {
+        margin-top: 1.5rem;
+    }
+
+    .cd-events-card {
+        height: 10rem;
+    }
+
+    .join-btn-container {
+        width: 5rem;
+        font-size: 70%;
+    }
+
+    .edit-text {
+        font-size: 0.6rem;
+    }
+
+    .reminder-heading {
+        font-size: 1rem;
+        letter-spacing: 1px;
+    }
+
+    .user-text {
+        font-size: 0.6rem;
+    }
+
+    .hello {
+        font-size: 1.3rem;
+    }
+
+    .event-description {
+        visibility: hidden;
+        height: 0rem;
+    }
+    
+}
+
+@media only screen and (max-width: 768px) and (min-width: 426px) {
+
+    /* .institute-cards-container {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+    } */
+    .container-1 {
+        height: fit-content;
+    }
+
+    .reminder-card {
+        min-height: 4rem;
+    }
+
+    .container-3 {
+        padding: 1rem;
+    }
+
+    .view-more {
+        width: 4rem;
+        text-align: end;
+        cursor: pointer;
+    }
+
+    .edit-text {
+        font-size: 0.8rem;
+    }
+
+    .user-text {
+        font-size: 2.2rem;
+    }
+
+    .reminder-cards-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .events-cards-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .ec-event-heading {
+        font-size: 1.2rem;
+    }
+
+    .ec-event-date {
+        font-size: 0.7rem;
+    }
+
+    .view-more {
+        width: 10rem;
+    }
+
+    .ec-event-domain {
+        font-size: 0.8rem;
+    }
+
+    .user-info-container {
+        max-height: 8rem;
+        width: 50%;
+    }
+
+    .clientDashboard-container {
+        width: 87%;
+    }
+
+    .heading {
+        font-size: 1.2rem;
+    }
+
+    .institute-cards-container, .events-cards-container, .courses-cards-container {
+        grid-template-columns: repeat(3, 1fr);
+        grid-gap: 0.8rem;
+        margin-top: 1rem;
+    }
+
+    .reminder-heading-container > .view-more {
+        visibility: hidden;
+    }
+
+    .rc-heading {
+        font-size: 0.8rem;
+    }
+
+    .rc-status {
+        font-size: 0.55rem;
+    }
+
+    .rc-time {
+        font-size: 0.6rem;
+    }
+
+    .reminder-card {
+        height: 100%;
+        min-height: 4rem;
+    }
+
+    .view-ticket-btn {
+        width: 5rem;
+        font-size: 60%;
+    }
+
+    .container-1 {
+        height: fit-content;
+        width: 90%;
+        gap: 0.6rem;
+    }
+
+    .clientDashboard-container {
+        margin-top: 1.5rem;
+    }
+
+    .cd-events-card {
+        height: 17rem;
+    }
+
+    .join-btn-container {
+        width: 5rem;
+        font-size: 70%;
+    }
+
+    .edit-text {
+        font-size: 0.6rem;
+    }
+
+    .reminder-heading {
+        font-size: 1rem;
+        letter-spacing: 1px;
+    }
+
+    .user-text {
+        font-size: 0.7rem;
+    }
+
+    .hello {
+        font-size: 1.3rem;
+    }
+
+    .event-description {
+        visibility: hidden;
+        height: 0rem;
+    }
+    
+    .course-text-heading {
+        font-size: 1.1rem;
+    }
+
+    .course-card {
+        height: 10rem;
+    }
+
+    .courses-heading-container {
+        margin: 1rem 0;
+    }
+
+    .course-domain {
+        font-size: 0.8rem;
+    }
+}

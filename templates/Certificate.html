@@ -1,0 +1,105 @@
+﻿<html>
+    <head>
+        <style>
+            body {
+                width: 100%;
+                margin: 0 auto;
+                padding: 0;
+                font-size: 12pt;
+                background: rgb(204,204,204);
+            }
+
+            * {
+                box-sizing: border-box;
+                -moz-box-sizing: border-box;
+            }
+
+            .main-page {
+                
+                background: white;
+                box-shadow: 0 0 0.5cm rgba(0,0,0,0.5);
+                background-image: url("/static/images/cert.png");
+                background-size: contain;
+            }
+
+            .sub-page {
+                padding: 1cm;
+                width: 297mm;
+            }
+            @page {
+                size: A4 landscape;
+                margin: 0;
+            }
+
+            @media print {
+                
+
+                .main-page {
+                    margin: 0;
+                    border: initial;
+                    border-radius: initial;
+                    width: initial;
+                    min-height: initial;
+                    box-shadow: initial;
+                    background: initial;
+                    page-break-after: always;
+                }
+            }
+            p{
+                font-family: 'arial';
+                text-align: right;
+
+            }
+
+        </style>
+    </head>
+    <body>
+        <div class="main-page">
+            <div class="sub-page">
+                <img src="/static/images/Logo.png" width="15%" />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <font size="10" face="Arial"><center><b>CERTIFICATE</b></center></font>
+                <font size="6" face="Arial"><center><b>OF APPRECIATION</b></center></font>
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <center>
+                    <font size="4" face="arial">
+                        This is to certify that
+                    </font>
+                    <br />
+                    <br />
+                    <font size="20" face="arial">
+                        {{name}}
+                    </font>
+                    <br />
+                    <br />
+                    <font size="4" face="arial">
+                        has successfully attended {{event_name}} at<br />{{organisation_name}}.
+                    </font>
+                </center>
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <p><a href="#" style="text-decoration: none; color: black;">{{link}}</a></p>
+            </div>
+        </div>
+    </body>
+
+</html>
