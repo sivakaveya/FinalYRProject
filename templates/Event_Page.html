@@ -197,7 +197,7 @@
         </div>
         <div class="flex-row"><img style="height:20px ;width: 20px;" src="../static//img/icons8-search.png" alt="">
             <img style="height:20px ;width: 20px; margin-left: 2vw;" src="../static//img/bell.png" alt="">
-            <img style="height: 20px; width: 85px; margin-left: 2vw" src="../static//img/logout_withoutbg.png" alt="">
+            <a href="/logout"><img style="height: 20px; width: 85px; margin-left: 2vw" src="../static//img/logout_withoutbg.png" alt=""></a>
         </div>
     </div>
     <div class="container-fluid poster-design " id="go" style="padding: 0 7vw; z-index: 5;">
@@ -229,7 +229,7 @@
                         <button class="cancel-event">Cancel Event</button>
                     </div>
                     <div class="view-ticket-container">
-                        <button class="view-ticket">View Ticket</button>
+                        <a href="{{url_for('ticket',eid=event.eid)}}"><button class="view-ticket" >View Ticket</button></a>
                     </div>
                 </div>
                 {% else %}

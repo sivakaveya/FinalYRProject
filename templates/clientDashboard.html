@@ -77,10 +77,10 @@
                 
                 <div class="reminder-heading-container">
                     <div class="reminder-heading">Reminders</div>
-                    <div class="view-more reminder-vm">View More</div>
+                    <div class="view-more reminder-vm" data-container-class="reminder-cards-container">View More</div>
                 </div>
                 
-                <div class="reminder-cards-container">
+                <div class="card-fix-container reminder-cards-container">
  
                     <!-- Deleted some code which is saved in notepad -->
 
@@ -110,7 +110,7 @@
                                         <div class="days-heading">8</div>
                                         <div class="days-text">Days to Go</div>
                                     </div> -->
-                                    <button class="view-ticket-btn">View Ticket</button>
+                                    <a href="{{url_for('ticket',eid=v.eid)}}"><button class="view-ticket-btn" >View Ticket</button></a>
                                 </div>
                             </div>
                         </div>
@@ -126,11 +126,11 @@
         <div class="clientDashboard-container container-2">
             <div class="events-heading heading">
                 <div class="events-heading">Events</div>
-                <div class="load-more events-lm">Load More</div>
+                <div class="view-more events-lm" data-container-class="events-cards-container">View More</div>
             </div>
 
 
-            <div class="events-cards-container">
+            <div class="card-fix-container events-cards-container">
 
 
 
@@ -188,17 +188,16 @@
                 <div class="institute-text-container">
                     <div class="institute-name">External Events</div>
 
-                    <div class="view-more institute"  id="loadMore">View More</div>
+                    <div class="view-more external-events" data-container-class="external-cards-container">View More</div>
                 </div>
             </div> 
 
-            <div class="institute-cards-container">
+            <div class="card-fix-container external-cards-container institute-cards-container">
 
                 <!-- Single card -->
 
                 {% for event in exevents %}
-                <a href="{{event.url}}" style="text-decoration: none">
-                <div class="institute-card" style="background: url('{{event.image}}'); background-size: cover; background-repeat: no-repeat;">
+                <a href="{{event.url}}" class="institute-card" style="background: url('{{event.image}}'); background-size: cover; background-repeat: no-repeat; text-decoration: none;">
                     <div class="ic-content-container">
                         <!-- <img class="rounded-circle img-fluid"
                                     style="object-fit: cover; border-radius: 0px;width: 50px;height: 50px;"
@@ -208,7 +207,6 @@
                         <div class="ec-event-date">{{event.date}}</div>
                         <div class="ec-event-domain">{{event.detail}}</div>
                     </div>
-                </div>
                 </a>
                 {% endfor %}
 
@@ -220,16 +218,15 @@
             <div class="institute-content-container">
                 <div class="institute-text-container">
                     <div class="institute-name">International Events</div>
-                    <div class="view-more institute">View More</div>
+                    <div class="view-more international-events" data-container-class="international-cards-container">View More</div>
                 </div>
             </div>
 
-            <div class="institute-cards-container">
+            <div class="card-fix-container international-cards-container institute-cards-container">
 
                 <!-- Single card -->
                 {% for event in international_events %}
-                <a href="{{event.url}}" style="text-decoration: none">
-                <div class="institute-card" style="background: gray; background-size: cover; background-repeat: no-repeat;">
+                <a href="{{event.url}}" class="institute-card" style="text-decoration: none; background: gray; background-size: cover; background-repeat: no-repeat;">
                     <div class="ic-content-container">
                         <!-- <img class="rounded-circle img-fluid"
                                     style="object-fit: cover; border-radius: 0px;width: 50px;height: 50px;"
@@ -239,7 +236,6 @@
                         <div class="ec-event-date">{{event.date}}</div>
                         <div class="ec-event-domain">{{event.detail}}</div>
                     </div>
-                </div>
                 </a>
                 {% endfor %}
 
@@ -249,12 +245,12 @@
         <div class="clientDashboard-container container-4">
             <div class="courses-heading-container">
                 <div class="courses-heading heading">Courses</div>
-                <div class="load-more courses-lm">Load more</div>
+                <div class="view-more courses-lm" data-container-class="courses-cards-container">View More</div>
 
 
             </div>
 
-            <div class="courses-cards-container">
+            <div class="card-fix-container courses-cards-container">
                 <!-- Single card -->
                 {% for course in courses %}
                 <a href="{{course.url}}" style="text-decoration: none;">
@@ -323,6 +319,43 @@ function function1(eid){
     //         });
     
 </script>
+    <script>
+        let viewMoreBtns = document.querySelectorAll('.view-more');
+        let fixCardLoad = document.querySelectorAll('.card-fix-container');
+
+        function removeExtraCards(container) {
+            for(let i = 3; i < container.children.length; i++) {
+                container.children[i].style.display = 'none';
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            fixCardLoad.forEach(cardContainer => {
+                console.log(cardContainer)
+                removeExtraCards(cardContainer)
+            });
+        })
+
+        viewMoreBtns.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                let toggleClass = btn.attributes[1].value; 
+
+                let toggleContainerChildren = document.querySelector('.' + toggleClass).children;
+            
+                if(btn.innerHTML == 'View More') {
+                    for(let i = 0; i < toggleContainerChildren.length; i++) {
+                        toggleContainerChildren[i].style.display = 'flex';
+                    }
+                    btn.innerHTML = 'View Less';
+                } else {
+                    for(let i = 3; i < toggleContainerChildren.length; i++) {
+                        toggleContainerChildren[i].style.display = 'none';
+                    }
+                    btn.innerHTML = 'View More';
+                }
+            })
+        })
+    </script>
 </body>
 
 

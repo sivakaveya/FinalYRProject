@@ -36,7 +36,8 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///Phoenix.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS']=False
 app.secret_key='ikstao'
 db = SQLAlchemy(app)
-APP_ROOT=os.path.dirname(os.path.abspath(__file__))
+
+
 
 # Setup Stripe python client library.
 load_dotenv(find_dotenv())
@@ -96,6 +97,7 @@ class Certificate(db.Model):
     cid=db.Column(db.String(200))
     lid=db.Column(db.String(100))
     eid=db.Column(db.String(100))
+
 ######################################################
 
 class Ticket(db.Model):
@@ -784,6 +786,31 @@ def orgprofile(lid):
     org = Orgdata.query.filter_by(lid=session['lid']).first()
     notifications=showNotifications(session['lid'])
     return render_template('orgprofilePage.html',org=org, notifications=notifications)
+
+# @app.route('/download_ticket/<eid>')
+# def download_ticket(eid):
+#     config= pdfkit.configuration(wkhtmltopdf= "C:/Program Files/wkhtmltopdf/bin/wkhtmltopdf.exe")
+#     data=Event.query.filter_by(eid=eid).first()
+#     print(data.eventMode)
+#     if data.eventMode=='Online':
+#         valid=1
+#     else:
+#         valid=0
+#     render_template_to_pdf('ticket.html', download=True, save=False,event_name=data.name, event_date=data.date, event_time=data.time, event_location=data.location,valid=valid)
+@app.route('/ticket/<eid>',methods=['POST','GET'])
+def ticket(eid):
+    data=Event.query.filter_by(eid=eid).first()
+    print(data.eventMode)
+    if data.eventMode=='Online':
+        valid=1
+    else:
+        valid=0
+    return render_template('ticket.html',event_name=data.name, event_date=data.date, event_time=data.time, event_location=data.location,valid=valid)
+
+@app.route("/certificate")
+def certificate():
+
+    return render_template('certificate.html')
 
 @app.route('/viewOrgProfile/<lid>',methods=['POST','GET'])
 def viewOrgProfile(lid):

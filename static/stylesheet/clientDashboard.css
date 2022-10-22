@@ -19,6 +19,10 @@ button, .events-card:hover, .institute-card:hover, .course-card:hover, .view-mor
     grid-gap: 1.3rem;
 }
 
+.events-cards-container > a, .events-cards-container > a, .external-cards-container > a, .international-cards-container > a, .courses-cards-container {
+    width: 100%;
+}
+
 .events-heading {
     display: flex;
     justify-content: space-between;

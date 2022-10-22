@@ -433,7 +433,7 @@ html, body {
 
 .single-user-container {
     border-top: 1px solid #A5A5A560;
-    height: 8rem;
+    height: 3rem;
     display: flex;
     align-items: center;
 }
@@ -460,7 +460,7 @@ html, body {
 
 .user-info-popup-container {
     /* height: 60%; */
-    height: 30rem;
+    height: 23rem;
     width: 28rem;
     background: #FFFFFF 0% 0% no-repeat padding-box;
     box-shadow: 0px 0px 20px #0000005F;

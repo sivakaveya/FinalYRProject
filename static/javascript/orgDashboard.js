@@ -8,6 +8,7 @@ let userInfoPopup = document.querySelector('.user-info-popup-container');
 let backToEventInfo = document.querySelector('.backToEventInfo');
 let reportPuClose = document.querySelector('.reportPuClose');
 let reportPopup = document.querySelector('.report-popup-container');
+let sendCertificateBtn = document.querySelectorAll('.send-certificate-btn');
 
 function close(ele) {
     ele.style.display = 'none';
@@ -36,6 +37,14 @@ prevEventsCards.forEach(card => {
     })
 });
 
+sendCertificateBtn.forEach(btn => {
+    btn.addEventListener('click', () => {
+        console.log('clicked');
+        close(popUpContainer);
+        close(eventInfoPopup);
+    })
+})
+
 userContainer.forEach(user => {
     user.addEventListener('click', () => {
         close(eventInfoPopup);
@@ -54,8 +63,8 @@ downloadReportBtn.forEach(btn => {
     btn.addEventListener('click', (e) => {
         close(popUpContainer)
         open(popUpContainer);
-        reportPopup.style.display = 'flex';
         close(userInfoPopup);
+        reportPopup.style.display = 'flex';
         e.stopPropagation();
         document.getElementById("download_report").value =btn.value
     })
@@ -73,3 +82,16 @@ backToEventInfo.addEventListener('click', () => {
 reportPuClose.addEventListener('click', () => {
     close(popUpContainer);
 });
+
+
+document.getElementById("btn_convert1").addEventListener("click", function() {
+	html2canvas(document.getElementById("bg")).then(function (canvas) {
+        var anchorTag = document.createElement("a");
+			// document.body.appendChild(anchorTag);
+			// document.getElementById("previewImg").appendChild(canvas);
+			anchorTag.download = "filename2.jpg";
+			anchorTag.href = canvas.toDataURL();
+			anchorTag.target = '_blank';
+			anchorTag.click();
+		});
+ });
